@@ -1,7 +1,7 @@
 export enum NavigationPaths {
     HOME = 'Home',
-    ABOUT = 'About',
-    WORK = 'Work',
-    MEDIA = 'Media',
+    WORK = 'Works',
+    MUSIC = 'Music',
+    VIDEOS = 'Videos',
     CONTACT = 'Contact',
 }

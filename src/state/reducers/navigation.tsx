@@ -21,7 +21,5 @@ const actionHandlers = {
 };
 
 export default (state: NavigationState = defaultState, action: AnyAction) => {
-    return actionHandlers[action.type]
-        ? actionHandlers[action.type](state, action)
-        : state;
+    return actionHandlers[action.type] ? actionHandlers[action.type](state, action) : state;
 };

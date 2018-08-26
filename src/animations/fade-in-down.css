@@ -1,0 +1,18 @@
+@keyframes fadeInDown {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.fade-in-down {
+    animation-name: fadeInDown;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+}

@@ -11,8 +11,5 @@ export default createStore(
         navigation,
     }),
     {},
-    compose(
-        (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-            (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-    )
+    compose((window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__())
 );
