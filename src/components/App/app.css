@@ -1,3 +1,8 @@
 .app {
     background-image: radial-gradient(gray, black);
 }
+
+.section {
+    padding-left: 12rem;
+    padding-top: 12rem;
+}
