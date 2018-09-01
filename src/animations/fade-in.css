@@ -1,16 +1,14 @@
-@keyframes fadeInDown {
-    0% {
-        transform: translateY(-1rem);
+@keyframes fadeIn {
+    from {
         opacity: 0;
     }
-    100% {
-        transform: translateY(0);
+    to {
         opacity: 1;
     }
 }
 
-.fade-in-down {
-    animation-name: fadeInDown;
+.fade-in {
+    animation-name: fadeIn;
     animation-duration: 0.75s;
     animation-timing-function: ease-in;
     animation-iteration-count: 1;

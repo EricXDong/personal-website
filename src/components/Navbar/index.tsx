@@ -27,14 +27,23 @@ const mapDispatchToProps = (dispatch: Dispatch): NavbarPropsFromDispatch => ({
 });
 
 class Navbar extends React.Component<NavbarProps> {
+    public componentDidMount() {
+        setTimeout(
+            () => this.props.setPath(NavigationPaths.HOME),
+            this.getAnimationDelay(Object.keys(NavigationPaths).length + 1) * 1000
+        );
+    }
+
+    public getAnimationDelay = (idx: number) => idx / 5;
+
     public setPath = (path: NavigationPaths) => this.props.setPath(path);
 
     public render() {
         return (
             <div className="fixed flex justify-between white w-100 ph7 pv5">
-                {Object.keys(NavigationPaths).map(path => {
+                {Object.keys(NavigationPaths).map((path, i) => {
                     const style = {
-                        animationDelay: `${Math.random()}s`,
+                        animationDelay: `${this.getAnimationDelay(i)}s`,
                     };
                     return (
                         <BasicButton

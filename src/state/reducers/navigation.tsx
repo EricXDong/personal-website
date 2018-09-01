@@ -6,11 +6,11 @@ import { SetPathAction } from '../actions';
 export const SET_PATH = 'SET_PATH';
 
 export interface NavigationState {
-    path: NavigationPaths;
+    path: NavigationPaths | null;
 }
 
 const defaultState: NavigationState = {
-    path: NavigationPaths.HOME,
+    path: null,
 };
 
 const actionHandlers = {

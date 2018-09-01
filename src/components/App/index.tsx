@@ -8,7 +8,7 @@ import Home from '../Home';
 import './app.css';
 
 interface AppPropsFromState {
-    path: NavigationPaths;
+    path: NavigationPaths | null;
 }
 
 type AppProps = AppPropsFromState;
@@ -28,7 +28,7 @@ class App extends React.Component<AppProps> {
                             case NavigationPaths.HOME:
                                 return <Home />;
                             default:
-                                return <Home />;
+                                return null;
                         }
                     })()}
                 </div>
