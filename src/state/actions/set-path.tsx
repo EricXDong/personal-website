@@ -1,12 +1,12 @@
-import { NavigationPaths } from '../../const/navigation';
+import { NavigationTypes } from '../../const/navigation';
 import { SET_PATH } from '../reducers/navigation';
 
 export interface SetPathAction {
     type: string;
-    path: NavigationPaths;
+    path: NavigationTypes;
 }
 
-export default (path: NavigationPaths): SetPathAction => ({
+export default (path: NavigationTypes): SetPathAction => ({
     type: SET_PATH,
     path,
 });

@@ -3,16 +3,20 @@ import * as React from 'react';
 import Image from '../Image';
 import Card from '../Card';
 import profilePic from '../../img/profile.png';
+import { TransitionProps } from '../../const/transition';
 import '../../animations/fade-in-left.css';
 import '../../animations/fade-in-right.css';
+import '../../animations/fade-out.css';
 import './home.css';
+
+type HomeProps = TransitionProps;
 
 interface HomeState {
     fadeImg: boolean;
 }
 
-class Home extends React.Component<{}, HomeState> {
-    constructor(props: {}) {
+class Home extends React.Component<HomeProps, HomeState> {
+    constructor(props: HomeProps) {
         super(props);
         this.state = {
             fadeImg: false,
@@ -31,23 +35,34 @@ class Home extends React.Component<{}, HomeState> {
                 </p>
             </>,
             <p>Adding another card to see how this looks.</p>,
+            <div>
+                <p>Perhaps a bulleted list of things</p>
+                <ul>
+                    <li>Cactus</li>
+                    <li>Traumatization</li>
+                    <li>Bucket sand</li>
+                    <li>Winnie the Pooh</li>
+                </ul>
+            </div>
         ];
         return (
-            <div className="flex">
-                <Card extraclasses={`mr4 dib ${this.state.fadeImg ? 'fade-in-left' : 'vis-hidden'}`}>
-                    <Image src={profilePic} width="300" onLoad={this.fadeImg} />
-                </Card>
-                <div className="">
-                    {cards.map((cardContent, i) => {
-                        const delay = {
-                            animationDelay: `${i / 3}s`,
-                        };
-                        return (
-                            <Card extraclasses={`white w-180 fade-in-right ${i ? 'mv4' : ''}`} style={delay}>
-                                {cardContent}
-                            </Card>
-                        );
-                    })}
+            <div className={this.props.exit ? 'fade-out' : ''}>
+                <div className="flex">
+                    <div>
+                        <Card extraclasses={`mr4 dib ${this.state.fadeImg ? 'fade-in-left' : 'vis-hidden'}`}>
+                            <Image src={profilePic} width="300" onLoad={this.fadeImg} />
+                        </Card>
+                    </div>
+                    <div>
+                        {cards.map((cardContent, i) => {
+                            const delay = { animationDelay: `${i / 3}s` };
+                            return (
+                                <Card extraclasses={`white w-80 fade-in-right ${i ? 'mv4' : ''}`} style={delay}>
+                                    {cardContent}
+                                </Card>
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         );

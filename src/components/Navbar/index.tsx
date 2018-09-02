@@ -4,46 +4,46 @@ import { connect } from 'react-redux';
 
 import { RootState } from '../../state/reducers';
 import { setPath } from '../../state/actions';
-import { NavigationPaths } from '../../const/navigation';
+import { NavigationPaths, navigateTransitionTime, NavigationTypes } from '../../const/navigation';
 import { BasicButton } from '../../components/Buttons';
 import './navbar.css';
 
 interface NavbarPropsFromState {
-    path: NavigationPaths;
+    path: NavigationTypes;
 }
 
 interface NavbarPropsFromDispatch {
-    setPath: (path: NavigationPaths) => {};
+    setPath: (path: NavigationTypes) => {};
 }
 
-type NavbarProps = NavbarPropsFromState & NavbarPropsFromDispatch;
+interface NavbarProps extends NavbarPropsFromState, NavbarPropsFromDispatch {
+    onNavigate: (oldPath: NavigationTypes) => void;
+}
 
 const mapStateToProps = (state: RootState) => ({
     path: state.navigation.path,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch): NavbarPropsFromDispatch => ({
-    setPath: (path: NavigationPaths) => dispatch(setPath(path)),
+    setPath: (path: NavigationTypes) => dispatch(setPath(path)),
 });
 
 class Navbar extends React.Component<NavbarProps> {
     public componentDidMount() {
-        setTimeout(
-            () => this.props.setPath(NavigationPaths.HOME),
-            this.getAnimationDelay(Object.keys(NavigationPaths).length + 1) * 1000
-        );
+        this.setPath(NavigationPaths.HOME);
     }
 
-    public getAnimationDelay = (idx: number) => idx / 5;
-
-    public setPath = (path: NavigationPaths) => this.props.setPath(path);
+    public setPath = (path: NavigationTypes) => {
+        this.props.onNavigate(this.props.path);
+        setTimeout(() => this.props.setPath(path), navigateTransitionTime);
+    }
 
     public render() {
         return (
             <div className="fixed flex justify-between white w-100 ph7 pv5">
                 {Object.keys(NavigationPaths).map((path, i) => {
                     const style = {
-                        animationDelay: `${this.getAnimationDelay(i)}s`,
+                        animationDelay: `${i / 5}s`,
                     };
                     return (
                         <BasicButton
