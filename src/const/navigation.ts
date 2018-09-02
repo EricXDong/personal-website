@@ -6,6 +6,6 @@ export enum NavigationPaths {
     CONTACT = 'Contact',
 }
 
-export const navigateTransitionTime = ((Object.keys(NavigationPaths).length) / 5) * 1000;
+export const navigateTransitionTime = (Object.keys(NavigationPaths).length / 5) * 1000;
 
 export type NavigationTypes = NavigationPaths | null;

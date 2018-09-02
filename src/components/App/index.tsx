@@ -14,7 +14,6 @@ interface AppPropsFromState {
 
 type AppProps = AppPropsFromState;
 
-
 interface AppState {
     //  A map telling which section is transitioning out
     sectionsExiting: Map<NavigationPaths, boolean>;
@@ -25,40 +24,39 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 class App extends React.Component<AppProps, AppState> {
-
     constructor(props: AppProps) {
         super(props);
         const sectionsExiting: Map<NavigationPaths, boolean> = new Map();
-        Object.keys(NavigationPaths).forEach((path) => {
+        Object.keys(NavigationPaths).forEach(path => {
             sectionsExiting[path] = false;
         });
         this.state = {
-            sectionsExiting
+            sectionsExiting,
         };
     }
 
     //  Duplicate the map for state transitions
     public duplicateSectionsExiting = () => {
         const newSectionsExiting: Map<NavigationPaths, boolean> = new Map();
-        Object.keys(this.state.sectionsExiting).forEach((section) => {
+        Object.keys(this.state.sectionsExiting).forEach(section => {
             newSectionsExiting[section] = this.state.sectionsExiting[section];
         });
         return newSectionsExiting;
-    }
+    };
 
     public onNavigate = (oldPath: NavigationTypes) => {
         //  Set the flag so component can transition out
         let newSectionsExiting = this.duplicateSectionsExiting();
         newSectionsExiting[oldPath as NavigationPaths] = true;
         this.setState({
-            sectionsExiting: newSectionsExiting
+            sectionsExiting: newSectionsExiting,
         });
         //  Reset flag to false after transition time
         setTimeout(() => {
             newSectionsExiting = this.duplicateSectionsExiting();
             newSectionsExiting[oldPath as NavigationPaths] = false;
             this.setState({
-                sectionsExiting: newSectionsExiting
+                sectionsExiting: newSectionsExiting,
             });
         }, navigateTransitionTime);
     };

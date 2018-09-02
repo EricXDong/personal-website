@@ -6,7 +6,7 @@ import profilePic from '../../img/profile.png';
 import { TransitionProps } from '../../const/transition';
 import '../../animations/fade-in-left.css';
 import '../../animations/fade-in-right.css';
-import '../../animations/fade-out.css';
+import '../../animations/blur-out.css';
 import './home.css';
 
 type HomeProps = TransitionProps;
@@ -43,10 +43,10 @@ class Home extends React.Component<HomeProps, HomeState> {
                     <li>Bucket sand</li>
                     <li>Winnie the Pooh</li>
                 </ul>
-            </div>
+            </div>,
         ];
         return (
-            <div className={this.props.exit ? 'fade-out' : ''}>
+            <div className={this.props.exit ? 'blur-out' : ''}>
                 <div className="flex">
                     <div>
                         <Card extraclasses={`mr4 dib ${this.state.fadeImg ? 'fade-in-left' : 'vis-hidden'}`}>

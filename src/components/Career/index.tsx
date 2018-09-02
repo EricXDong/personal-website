@@ -7,7 +7,6 @@ import '../../animations/fade-out.css';
 type CareerProps = TransitionProps;
 
 class Career extends React.Component<CareerProps> {
-
     public render() {
         return (
             <div className={this.props.exit ? 'fade-out' : ''}>
