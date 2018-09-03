@@ -9,6 +9,7 @@ import yahooLogo from '../../img/yahoo.svg';
 import uscLogo from '../../img/usc.svg';
 import '../../animations/fade-out.css';
 import '../../animations/uncover-down.css';
+import '../../animations/cover-down.css';
 
 type CareerProps = TransitionProps;
 
@@ -93,14 +94,14 @@ class Career extends React.Component<CareerProps> {
                 <Card extraclasses="ml3">
                     <p className="pa0 ma0 f3">Born</p>
                 </Card>
-            </TimelineEntry>
-        ]
+            </TimelineEntry>,
+        ];
         return (
-            <div className={`ml6 fw1 uncover-down ${this.props.exit ? 'fade-out' : ''}`}>
+            <div className={`ml6 fw1 ${this.props.exit ? 'cover-down' : 'uncover-down'}`}>
                 <Timeline>
                     {timelineEntries.map((entry, i) => {
                         return React.cloneElement(entry, {
-                            animationDelay: (i / 4) * 1000
+                            animationDelay: ((i / 5) + 0.5) * 1000,
                         });
                     })}
                 </Timeline>
