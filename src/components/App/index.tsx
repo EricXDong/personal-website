@@ -63,9 +63,9 @@ class App extends React.Component<AppProps, AppState> {
 
     public render() {
         return (
-            <div className="sans-serif absolute w-100 h-100 app">
+            <div className="flex sans-serif absolute w-100 h-100 app">
                 <Navbar onNavigate={this.onNavigate} />
-                <div className="section">
+                <div className="overflow-scroll w-100 section">
                     {(() => {
                         switch (this.props.path) {
                             case NavigationPaths.HOME:

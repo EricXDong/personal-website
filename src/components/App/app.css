@@ -3,6 +3,11 @@
 }
 
 .section {
-    padding-left: 12rem;
-    padding-top: 12rem;
+    margin-left: 12rem;
+    margin-top: 8rem;
+    padding-top: 4rem;
+}
+
+.section::-webkit-scrollbar {
+    display: none;
 }

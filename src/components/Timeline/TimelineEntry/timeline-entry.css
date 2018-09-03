@@ -1,0 +1,12 @@
+.timestamp {
+    width: 7rem;
+    font-size: 1.25rem;
+}
+
+.bubble {
+    width: 6rem;
+}
+
+.hide {
+    opacity: 0;
+}

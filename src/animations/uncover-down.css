@@ -1,0 +1,19 @@
+@keyframes uncoverDown {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+        overflow: inherit;
+    }
+}
+
+.uncover-down {
+    overflow: hidden;
+
+    animation-name: uncoverDown;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
