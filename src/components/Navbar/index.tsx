@@ -34,8 +34,10 @@ class Navbar extends React.Component<NavbarProps> {
     }
 
     public setPath = (path: NavigationTypes) => {
-        this.props.onNavigate(this.props.path);
-        setTimeout(() => this.props.setPath(path), navigateTransitionTime);
+        if (path !== this.props.path) {
+            this.props.onNavigate(this.props.path);
+            setTimeout(() => this.props.setPath(path), navigateTransitionTime);
+        }
     };
 
     public render() {

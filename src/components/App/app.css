@@ -8,6 +8,6 @@
     padding-top: 4rem;
 }
 
-.section::-webkit-scrollbar {
+::-webkit-scrollbar {
     display: none;
 }

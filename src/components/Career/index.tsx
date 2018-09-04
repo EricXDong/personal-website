@@ -101,7 +101,7 @@ class Career extends React.Component<CareerProps> {
                 <Timeline>
                     {timelineEntries.map((entry, i) => {
                         return React.cloneElement(entry, {
-                            animationDelay: ((i / 5) + 0.5) * 1000,
+                            animationDelay: (i / 5 + 0.5) * 1000,
                         });
                     })}
                 </Timeline>
