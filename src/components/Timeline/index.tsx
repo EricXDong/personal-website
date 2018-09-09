@@ -22,14 +22,22 @@ class Timeline extends React.Component<TimelineProps> {
         } else if (this.props.children) {
             children = [this.props.children];
         }
+
+        const fixedHeight = { height: '20vh' };
         return (
-            <div className="h-50">
-                <div className="flex justify-between">
+            <div>
+                <div className="flex justify-between" style={fixedHeight}>
                     {children.map((entry: TimelineEntry, i: number) => (
                         <div className={`relative w1 flex justify-center fade-in-right`} style={this.getDelayStyle(i)}>
                             <div className="flex flex-column justify-end">
                                 {i % 2 === 0 && (
-                                    <div className="mb4 white timeline-children">{entry.props.children}</div>
+                                    <div
+                                        className={`mb4 white timeline-children ${
+                                            entry.props.expandOnHover ? 'expand-top' : ''
+                                        }`}
+                                    >
+                                        {entry.props.children}
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -45,12 +53,18 @@ class Timeline extends React.Component<TimelineProps> {
                     ))}
                 </div>
 
-                <div className="flex justify-between">
+                <div className="flex justify-between" style={fixedHeight}>
                     {children.map((entry: TimelineEntry, i: number) => (
                         <div className={`relative w1 flex justify-center fade-in-right`} style={this.getDelayStyle(i)}>
                             <div className="flex flex-column justify-start">
                                 {i % 2 === 1 && (
-                                    <div className="mt4 white timeline-children">{entry.props.children}</div>
+                                    <div
+                                        className={`mt4 white timeline-children ${
+                                            entry.props.expandOnHover ? 'expand-btm' : ''
+                                        }`}
+                                    >
+                                        {entry.props.children}
+                                    </div>
                                 )}
                             </div>
                         </div>
