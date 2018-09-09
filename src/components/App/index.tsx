@@ -35,7 +35,7 @@ class App extends React.Component<AppProps, AppState> {
         };
     }
 
-    //  Duplicate the map for state transitions
+    //  Duplicate the map for state transitions bc I'm a goodboi
     public duplicateSectionsExiting = () => {
         const newSectionsExiting: Map<NavigationPaths, boolean> = new Map();
         Object.keys(this.state.sectionsExiting).forEach(section => {
@@ -65,7 +65,7 @@ class App extends React.Component<AppProps, AppState> {
         return (
             <div className="flex sans-serif absolute w-100 h-100 app">
                 <Navbar onNavigate={this.onNavigate} />
-                <div className="overflow-y-scroll w-100 section">
+                <div className="w-100 section">
                     {(() => {
                         switch (this.props.path) {
                             case NavigationPaths.HOME:

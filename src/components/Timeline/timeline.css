@@ -1,5 +1,11 @@
-.vertical-line {
-    border-width: 4px;
-    margin-left: calc(9.5rem - 2px);
-    height: 1000px;
+.horizontal-line {
+    top: 50%;
+    transform: translateY(-3px);
+    border-width: 3px;
+    border-style: solid;
+    border-color: white;
+}
+
+.timeline-children {
+    width: 14vw;
 }

@@ -3,9 +3,11 @@
 }
 
 .section {
-    margin-left: 12rem;
-    margin-top: 8rem;
-    padding-top: 4rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-left: 10vw;
+    padding-right: 10vw;
 }
 
 ::-webkit-scrollbar {
