@@ -27,10 +27,9 @@ class Career extends React.Component<CareerProps> {
                             <span className="db f6 silver">
                                 <i>Full Time Software Engineer</i>
                             </span>
-
                             <ul className="mt4">
-                                <li>I did this</li>
-                                <li>And also this</li>
+                                <li>Helped design and build a fully integrated simulation system</li>
+                                <li>Built the web app for an internal cost optimization tool</li>
                             </ul>
                         </Card>
                     </TimelineEntry>
@@ -41,9 +40,13 @@ class Career extends React.Component<CareerProps> {
                             <span className="db f6 silver">
                                 <i>Software Intern</i>
                             </span>
+                            <ul className="mt4">
+                                <li>Expanded the features of the company help system</li>
+                                <li>Integrated the help system with Github</li>
+                            </ul>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry icon={uscLogo}>
+                    <TimelineEntry icon={uscLogo} expandOnHover={false}>
                         <Card extraclasses="h-100 overflow-hidden">
                             <p className="mt0 mb1 f5 yellow">May 2017</p>
                             <p className="ma0 f3">
@@ -57,11 +60,21 @@ class Career extends React.Component<CareerProps> {
                     </TimelineEntry>
                     <TimelineEntry>
                         <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">Oct 2016</p>
+                            <p className="mt0 mb1 f5 yellow">October 2016</p>
                             <p className="ma0 f3">Jibo project</p>
                             <span className="db f6 silver">
                                 <i>With Professor David Barnhart</i>
                             </span>
+                            <div className="mt4">
+                                <p>Engineering lead of a project built on the Jibo platform</p>
+                                <ul>
+                                    <li>
+                                        Designed and built the project and its development/testing environment from
+                                        scratch
+                                    </li>
+                                    <li>Managed a team of two developers and one researcher</li>
+                                </ul>
+                            </div>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry icon={yahooLogo}>
@@ -71,9 +84,12 @@ class Career extends React.Component<CareerProps> {
                             <span className="db f6 silver">
                                 <i>Technical Intern II</i>
                             </span>
+                            <div className="mt4">
+                                <p>Owned the video player side of the Yahoo! Sports Reel project.</p>
+                            </div>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry icon={uscLogo}>
+                    <TimelineEntry icon={uscLogo} expandOnHover={false}>
                         <Card extraclasses="h-100 overflow-hidden">
                             <p className="mt0 mb1 f5 yellow">May 2016</p>
                             <p className="ma0 f3">
@@ -88,6 +104,23 @@ class Career extends React.Component<CareerProps> {
                             </span>
                         </Card>
                     </TimelineEntry>
+                    <TimelineEntry>
+                        <Card extraclasses="h-100 overflow-hidden">
+                            <p className="mt0 mb1 f5 yellow">January 2016</p>
+                            <p className="ma0 f3">BIRS</p>
+                            <span className="db f6 silver">
+                                <i>Brain Injury Research System</i>
+                            </span>
+                            <div className="mt4">
+                                <p>Assisted a PhD group with building an early warning application for identifying victims of concussion</p>
+                                <ul>
+                                    <li>Redesigned and cleaned up the code base (it was a mess y'all)</li>
+                                    <li>Standardized the UI/UX</li>
+                                    <li>Integrated the application with Python data analytics scripts</li>
+                                </ul>
+                            </div>
+                        </Card>
+                    </TimelineEntry>
                     <TimelineEntry icon={yahooLogo}>
                         <Card extraclasses="h-100 overflow-hidden">
                             <p className="mt0 mb1 f5 yellow">May 2015</p>
@@ -95,15 +128,13 @@ class Career extends React.Component<CareerProps> {
                             <span className="db f6 silver">
                                 <i>Technical Intern I</i>
                             </span>
-                        </Card>
-                    </TimelineEntry>
-                    <TimelineEntry>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">May 2014</p>
-                            <p className="ma0 f3">Mentor Graphics</p>
-                            <span className="db f6 silver">
-                                <i>Software Developer Intern</i>
-                            </span>
+                            <div className="mt4">
+                                <ul>
+                                    <li>Improved data streaming to the video player</li>
+                                    <li>Revised the error code system</li>
+                                    <li>Unified metrics into one cohesive system</li>
+                                </ul>
+                            </div>
                         </Card>
                     </TimelineEntry>
                 </Timeline>
