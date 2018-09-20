@@ -20,3 +20,8 @@
     animation: underline 0.1s linear 0s 1 normal;
     animation-fill-mode: forwards;
 }
+
+.ph {
+    padding-left: 15vw;
+    padding-right: 15vw;
+}

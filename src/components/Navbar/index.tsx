@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: Dispatch): NavbarPropsFromDispatch => ({
 
 class Navbar extends React.Component<NavbarProps> {
     public componentDidMount() {
-        this.setPath(NavigationPaths.CAREER);
+        this.setPath(NavigationPaths.HOME);
     }
 
     public setPath = (path: NavigationTypes) => {
@@ -42,7 +42,7 @@ class Navbar extends React.Component<NavbarProps> {
 
     public render() {
         return (
-            <div className="fixed flex justify-between white w-100 ph7 pv5">
+            <div className="fixed flex justify-between white w-100 pv5 ph">
                 {Object.keys(NavigationPaths).map((path, i) => {
                     const style = {
                         animationDelay: `${i / 5}s`,

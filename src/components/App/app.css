@@ -2,14 +2,6 @@
     background-image: radial-gradient(gray, black 95%);
 }
 
-.section {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding-left: 10vw;
-    padding-right: 10vw;
-}
-
 ::-webkit-scrollbar {
     display: none;
 }

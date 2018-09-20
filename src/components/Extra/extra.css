@@ -1,0 +1,21 @@
+.vis-hidden {
+    visibility: hidden;
+}
+
+@font-face {
+    font-family: "Raleway";
+    src: url("../../fonts/Raleway-Regular.ttf");
+}
+
+.extra {
+    font-family: Raleway, Arial, Helvetica, sans-serif
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.card-size {
+    width: 12rem;
+    height: 12rem;
+}

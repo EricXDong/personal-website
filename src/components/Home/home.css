@@ -1,3 +1,33 @@
-.vis-hidden {
-    visibility: hidden;
+@font-face {
+    font-family: "Raleway";
+    src: url("../../fonts/Raleway-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Raleway-Light";
+    src: url("../../fonts//Raleway-ExtraLight.ttf");
+}
+
+.home {
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rotate {
+    transform: rotate(45deg);
+}
+
+.huge-font {
+    font-family: Raleway-Light, Arial, Helvetica, sans-serif;
+    font-size: 7rem;
+}
+
+.thin-font {
+    font-family: Raleway-Light, Arial, Helvetica, sans-serif;
+}
+
+.maroon {
+    color: #8B1717;
 }
