@@ -5,23 +5,3 @@
     border-style: solid;
     border-color: white;
 }
-
-.timeline-children {
-    width: 14vw;
-    height: 12vh;
-
-    transition: transform 0.5s, width 0.5s, height 0.5s;
-    transition-timing-function: ease-in-out;
-}
-
-.expand-top:hover {
-    transform: translateY(-10%);
-    width: 20vw;
-    height: 20vh;
-}
-
-.expand-btm:hover {
-    transform: translateY(10%);
-    width: 20vw;
-    height: 20vh;
-}

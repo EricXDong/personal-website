@@ -1,78 +1,46 @@
 import * as React from 'react';
 
-import TimelineEntry from './TimelineEntry';
-import TimelineBubble from './TimelineBubble';
 import './timeline.css';
 import '../../animations/fade-in-right.css';
 
 interface TimelineProps {
     extraclasses?: string;
-    children?: React.ReactElement<TimelineEntry> | Array<React.ReactElement<TimelineEntry>>;
 }
 
-class Timeline extends React.Component<TimelineProps> {
-    public getDelayStyle = (idx: number) => ({
-        animationDelay: `${idx / 5 + 0.5}s`,
-    });
+const getDelayStyle = (idx: number) => ({
+    animationDelay: `${idx / 5 + 0.5}s`,
+});
 
-    public render() {
-        let children: any = [];
-        if (this.props.children && Array.isArray(this.props.children)) {
-            children = this.props.children;
-        } else if (this.props.children) {
-            children = [this.props.children];
-        }
-
-        const fixedHeight = { height: '20vh' };
-        return (
-            <div>
-                <div className="flex justify-between" style={fixedHeight}>
-                    {children.map((entry: TimelineEntry, i: number) => (
-                        <div className={`relative w1 flex justify-center fade-in-right`} style={this.getDelayStyle(i)}>
-                            <div className="flex flex-column justify-end">
-                                {i % 2 === 0 && (
-                                    <div
-                                        className={`mb4 white timeline-children ${
-                                            entry.props.expandOnHover ? 'expand-top' : ''
-                                        }`}
-                                    >
-                                        {entry.props.children}
-                                    </div>
+const Timeline: React.SFC<TimelineProps> = props => {
+    let children: any = [];
+    if (props.children && Array.isArray(props.children)) {
+        children = props.children;
+    } else if (props.children) {
+        children = [props.children];
+    }
+    return (
+        <div>
+            <div className="h3 relative">
+                <hr className="absolute w-100 ma0 z-0 horizontal-line" />
+                <div className="relative h-100 flex items-center justify-between z-1">
+                    {children.map((child: any, i: number) => {
+                        console.log(child.props);
+                        return (
+                            <div
+                                className={`dib w1 white ${i % 2 === 0 ? 'self-end' : 'self-start'} fade-in-right`}
+                                style={getDelayStyle(i)}
+                            >
+                                {React.cloneElement(
+                                    child,
+                                    Object.assign({}, child.props, { entryAboveIcon: i % 2 === 0 })
                                 )}
                             </div>
-                        </div>
-                    ))}
-                </div>
-
-                <div className="flex justify-between items-center relative h3">
-                    <hr className="absolute w-100 ma0 horizontal-line" />
-                    {children.map((entry: TimelineEntry, i: number) => (
-                        <div className={`relative w1 h3 fade-in-right`} style={this.getDelayStyle(i)}>
-                            <TimelineBubble icon={entry.props.icon} />
-                        </div>
-                    ))}
-                </div>
-
-                <div className="flex justify-between" style={fixedHeight}>
-                    {children.map((entry: TimelineEntry, i: number) => (
-                        <div className={`relative w1 flex justify-center fade-in-right`} style={this.getDelayStyle(i)}>
-                            <div className="flex flex-column justify-start">
-                                {i % 2 === 1 && (
-                                    <div
-                                        className={`mt4 white timeline-children ${
-                                            entry.props.expandOnHover ? 'expand-btm' : ''
-                                        }`}
-                                    >
-                                        {entry.props.children}
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
 export default Timeline;

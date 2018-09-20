@@ -3,7 +3,7 @@ import * as React from 'react';
 import { TransitionProps } from '../../const/transition';
 import Card from '../Card';
 import Timeline from '../Timeline';
-import TimelineEntry from '../Timeline/TimelineEntry';
+import TimelineEntry, { TimelineEntrySizes } from '../Timeline/TimelineEntry';
 import h1Logo from '../../img/h1.svg';
 import yahooLogo from '../../img/yahoo.svg';
 import uscLogo from '../../img/usc.svg';
@@ -29,11 +29,11 @@ class Career extends React.Component<CareerProps> {
                             </span>
                             <ul className="mt4">
                                 <li>Helped design and build a fully integrated simulation system</li>
-                                <li>Built the web app for an internal cost optimization tool</li>
+                                <li>Owned the web app for an internal cost optimization tool</li>
                             </ul>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry icon={h1Logo}>
+                    <TimelineEntry icon={h1Logo} size={TimelineEntrySizes.SMALL}>
                         <Card extraclasses="h-100 overflow-hidden">
                             <p className="mt0 mb1 f5 yellow">June 2017</p>
                             <p className="ma0 f3">Virgin Hyperloop One</p>
@@ -41,7 +41,7 @@ class Career extends React.Component<CareerProps> {
                                 <i>Software Intern</i>
                             </span>
                             <ul className="mt4">
-                                <li>Expanded the features of the company help system</li>
+                                <li>Worked on the company help system</li>
                                 <li>Integrated the help system with Github</li>
                             </ul>
                         </Card>
@@ -58,7 +58,7 @@ class Career extends React.Component<CareerProps> {
                             </span>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry>
+                    <TimelineEntry size={TimelineEntrySizes.LARGE}>
                         <Card extraclasses="h-100 overflow-hidden">
                             <p className="mt0 mb1 f5 yellow">October 2016</p>
                             <p className="ma0 f3">Jibo project</p>
@@ -66,7 +66,7 @@ class Career extends React.Component<CareerProps> {
                                 <i>With Professor David Barnhart</i>
                             </span>
                             <div className="mt4">
-                                <p>Engineering lead of a project built on the Jibo platform</p>
+                                <p>Engineering lead of a Jibo application.</p>
                                 <ul>
                                     <li>
                                         Designed and built the project and its development/testing environment from
@@ -77,7 +77,7 @@ class Career extends React.Component<CareerProps> {
                             </div>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry icon={yahooLogo}>
+                    <TimelineEntry icon={yahooLogo} size={TimelineEntrySizes.SMALL}>
                         <Card extraclasses="h-100 overflow-hidden">
                             <p className="mt0 mb1 f5 yellow">May 2016</p>
                             <p className="ma0 f3">Yahoo!</p>
@@ -112,12 +112,10 @@ class Career extends React.Component<CareerProps> {
                                 <i>Brain Injury Research System</i>
                             </span>
                             <div className="mt4">
-                                <p>Assisted a PhD group with building an early warning application for identifying victims of concussion</p>
-                                <ul>
-                                    <li>Redesigned and cleaned up the code base (it was a mess y'all)</li>
-                                    <li>Standardized the UI/UX</li>
-                                    <li>Integrated the application with Python data analytics scripts</li>
-                                </ul>
+                                <p>
+                                    Assisted a PhD group with building an early warning application for identifying
+                                    victims of concussion.
+                                </p>
                             </div>
                         </Card>
                     </TimelineEntry>
