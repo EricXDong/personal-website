@@ -6,6 +6,7 @@ import { RootState } from '../../state/reducers';
 import { NavigationPaths, NavigationTypes, navigateTransitionTime } from '../../const/navigation';
 import Home from '../Home';
 import Career from '../Career';
+import Contact from '../Contact';
 import './app.css';
 
 interface AppPropsFromState {
@@ -72,6 +73,8 @@ class App extends React.Component<AppProps, AppState> {
                                 return <Home exit={this.state.sectionsExiting[NavigationPaths.HOME]} />;
                             case NavigationPaths.CAREER:
                                 return <Career exit={this.state.sectionsExiting[NavigationPaths.CAREER]} />;
+                            case NavigationPaths.CONTACT:
+                                return <Contact exit={this.state.sectionsExiting[NavigationPaths.CONTACT]} />;
                             default:
                                 return null;
                         }

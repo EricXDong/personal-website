@@ -1,0 +1,7 @@
+.text-area:focus {
+    outline: none;
+}
+
+.raleway-font {
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+}

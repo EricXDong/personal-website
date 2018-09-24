@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './timeline-bubble.css';
+import '../../../common.css';
 
 interface TimelineBubbleProps {
     icon?: string;
@@ -17,7 +17,7 @@ export default (props: TimelineBubbleProps) => {
         </div>
     ) : (
         <div className={`relative w3 h3`}>
-            <div className={`w2 h2 absolute ${defaultClasses} tiny-bubble`} />
+            <div className={`w2 h2 absolute ${defaultClasses} absolute-center`} />
         </div>
     );
 };
