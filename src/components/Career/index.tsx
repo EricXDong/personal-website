@@ -14,8 +14,12 @@ type CareerProps = TransitionProps;
 
 class Career extends React.Component<CareerProps> {
     public render() {
+        const outerMargin = {
+            marginLeft: '10vw',
+            marginRight: '10vw',
+        };
         return (
-            <div className={`fw1 mh7 ${this.props.exit ? 'blur-out w-100' : 'uncover-right'}`}>
+            <div className={`fw1 ${this.props.exit ? 'blur-out w-100' : 'uncover-right'}`} style={outerMargin}>
                 <Timeline>
                     <TimelineEntry expandOnHover={false}>
                         <p className="tc ma0 f2">Now</p>

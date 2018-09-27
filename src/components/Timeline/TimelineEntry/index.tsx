@@ -52,7 +52,7 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                 break;
             case TimelineEntrySizes.MEDIUM:
                 expandWidth = '20vw';
-                expandHeight = '21vh';
+                expandHeight = '22vh';
                 break;
             case TimelineEntrySizes.LARGE:
                 expandWidth = '22vw';
@@ -60,7 +60,7 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                 break;
             default:
                 expandWidth = '20vw';
-                expandHeight = '21vh';
+                expandHeight = '22vh';
         }
 
         const expandTopStyle = {

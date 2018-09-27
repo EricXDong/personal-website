@@ -96,18 +96,15 @@ class Contact extends React.Component<ContactProps, ContactState> {
                             const styleElement = document.createElement('style');
                             const animationName = `orbit-${i}`;
                             const animation = `
-                            @keyframes ${animationName} {
-                                from { transform: rotate(0deg) ${link.offsetTransform} rotate(0deg) }
-                                to { transform: rotate(360deg) ${link.offsetTransform} rotate(-360deg) }
-                            }
-                        `;
+                                @keyframes ${animationName} {
+                                    from { transform: rotate(0deg) ${link.offsetTransform} rotate(0deg) }
+                                    to { transform: rotate(360deg) ${link.offsetTransform} rotate(-360deg) }
+                                }
+                            `;
                             styleElement.innerHTML = animation;
                             document.head.appendChild(styleElement);
 
-                            link.style = {
-                                animation: `${animationName} 300s linear infinite`,
-                            };
-
+                            link.style = { animation: `${animationName} 300s linear infinite` };
                             return link;
                         }),
                     }),

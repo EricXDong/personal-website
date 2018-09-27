@@ -24,7 +24,6 @@ const Timeline: React.SFC<TimelineProps> = props => {
                 <hr className="absolute w-100 ma0 z-0 horizontal-line" />
                 <div className="relative h-100 flex items-center justify-between z-1">
                     {children.map((child: any, i: number) => {
-                        console.log(child.props);
                         return (
                             <div
                                 className={`dib w1 white ${i % 2 === 0 ? 'self-end' : 'self-start'} fade-in-right`}
