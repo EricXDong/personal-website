@@ -16,5 +16,9 @@ export const BasicButton = (props: React.InputHTMLAttributes<{}> & ButtonProps) 
 );
 
 export const FormButton = (props: React.InputHTMLAttributes<{}> & ButtonProps) => (
-    <button className={`ph3 pv2 br2 bg-black-40 ba b--white-50 pointer dim ${props.extraclasses}`} {...props} />
+    <input
+        type="submit"
+        className={`ph3 pv2 br2 bg-black-40 ba b--white-50 pointer dim ${props.extraclasses}`}
+        {...props}
+    />
 );
