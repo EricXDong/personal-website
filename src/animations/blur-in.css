@@ -1,0 +1,18 @@
+@keyframes blurIn {
+    from {
+        filter: blur(30px);
+        opacity: 0;
+    }
+    to {
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.blur-in {
+    animation-name: blurIn;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}

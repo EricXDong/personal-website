@@ -10,6 +10,7 @@ import github from '../../img/github.svg';
 import './contact.css';
 import '../../common.css';
 import '../../animations/blur-out.css';
+import '../../animations/blur-in.css';
 import '../../animations/fade-in.css';
 import '../../animations/fade-in-right.css';
 
@@ -54,22 +55,22 @@ class Contact extends React.Component<ContactProps, ContactState> {
                 {
                     component: <ContactLink icon={instagram} url="https://www.instagram.com/thenameisdong/" />,
                     style: centerStyle,
-                    classes: 'fade-in',
+                    classes: 'blur-in',
                 },
                 {
                     component: <ContactLink icon={linkedin} url="https://www.linkedin.com/in/dongeric/" />,
                     style: centerStyle,
-                    classes: 'fade-in',
+                    classes: 'blur-in',
                 },
                 {
                     component: <ContactLink icon={github} url="https://github.com/EricXDong" />,
                     style: centerStyle,
-                    classes: 'fade-in',
+                    classes: 'blur-in',
                 },
                 {
                     component: <ContactLink icon={fb} url="https://www.facebook.com/EricDonger" />,
                     style: centerStyle,
-                    classes: 'fade-in',
+                    classes: 'blur-in',
                 },
             ],
         };
