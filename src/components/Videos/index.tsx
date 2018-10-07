@@ -1,7 +1,9 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
+import * as scrollIntoView from 'scroll-into-view';
 
 import { TransitionProps } from '../../const/transition';
 import getMuiStyles from '../../util/get-mui-styles';
@@ -79,6 +81,13 @@ class Videos extends React.Component<VideosProps, VideosState> {
                 });
             }),
         });
+
+        //  Automatically scroll it into view
+        const current = this.videoRefs[idx].current;
+        if (current) {
+            const node = ReactDOM.findDOMNode(current as React.ReactInstance) as HTMLElement;
+            scrollIntoView(node);
+        }
     };
 
     public resetVideoFocus = () => {

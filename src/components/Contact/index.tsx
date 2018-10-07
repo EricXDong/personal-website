@@ -180,7 +180,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
                 </form>
                 <div className="w-40 h-100 relative flex justify-center items-center">
                     <p style={{ animationDelay: '1.25s' }} className="f3 fade-in">
-                        Or check out
+                        Also check out
                     </p>
                     {this.state.links.map((link, i) => {
                         return (
