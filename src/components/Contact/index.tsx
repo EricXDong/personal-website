@@ -1,7 +1,7 @@
 import * as React from 'react';
+import Button from '@material-ui/core/Button';
 
 import ContactLink from './ContactLink';
-import { FormButton } from '../Buttons';
 import { TransitionProps } from '../../const/transition';
 import fb from '../../img/fb.svg';
 import instagram from '../../img/instagram.svg';
@@ -172,7 +172,11 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         onChange={this.updateMessage}
                         value={this.state.message}
                     />
-                    <FormButton extraclasses="white f3 mt3 self-end" value="Send" />
+                    <div className="mt3 self-end">
+                        <Button variant="outlined" color="primary" size="large">
+                            Send
+                        </Button>
+                    </div>
                 </form>
                 <div className="w-40 h-100 relative flex justify-center items-center">
                     <p style={{ animationDelay: '1.25s' }} className="f3 fade-in">

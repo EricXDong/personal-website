@@ -1,6 +1,6 @@
 .entry-children {
-    width: 14vw;
-    height: 12vh;
+    width: 17rem;
+    height: 8rem;
 
     transition: transform 0.25s, width 0.25s, height 0.25s;
     transition-timing-function: ease;

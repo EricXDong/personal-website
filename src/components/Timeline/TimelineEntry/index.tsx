@@ -5,6 +5,7 @@ import './timeline-entry.css';
 
 export enum TimelineEntrySizes {
     SMALL,
+    KINDA_SMALL,
     MEDIUM,
     LARGE,
 }
@@ -47,20 +48,24 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
         let expandHeight;
         switch (this.props.size) {
             case TimelineEntrySizes.SMALL:
-                expandWidth = '18vw';
-                expandHeight = '19vh';
+                expandWidth = '20rem';
+                expandHeight = '12rem';
+                break;
+            case TimelineEntrySizes.KINDA_SMALL:
+                expandWidth = '22rem';
+                expandHeight = '13rem';
                 break;
             case TimelineEntrySizes.MEDIUM:
-                expandWidth = '20vw';
-                expandHeight = '22vh';
+                expandWidth = '24rem';
+                expandHeight = '16rem';
                 break;
             case TimelineEntrySizes.LARGE:
-                expandWidth = '22vw';
-                expandHeight = '26vh';
+                expandWidth = '26rem';
+                expandHeight = '18rem';
                 break;
             default:
-                expandWidth = '20vw';
-                expandHeight = '22vh';
+                expandWidth = '24rem';
+                expandHeight = '16rem';
         }
 
         const expandTopStyle = {

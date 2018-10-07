@@ -1,4 +1,6 @@
 import * as React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import { TransitionProps } from '../../const/transition';
 import Card from '../Card';
@@ -7,10 +9,11 @@ import TimelineEntry, { TimelineEntrySizes } from '../Timeline/TimelineEntry';
 import h1Logo from '../../img/h1.svg';
 import yahooLogo from '../../img/yahoo.svg';
 import uscLogo from '../../img/usc.svg';
+import getMuiStyles from '../../util/get-mui-styles';
 import '../../animations/blur-out.css';
 import '../../animations/uncover-right.css';
 
-type CareerProps = TransitionProps;
+type CareerProps = TransitionProps & WithStyles<typeof getMuiStyles>;
 
 class Career extends React.Component<CareerProps> {
     public render() {
@@ -23,121 +26,187 @@ class Career extends React.Component<CareerProps> {
             <div className={`fw1 self-center ${this.props.exit ? 'blur-out w-100' : 'uncover-right'}`} style={spacing}>
                 <Timeline>
                     <TimelineEntry expandOnHover={false}>
-                        <p className="tc ma0 f2">Now</p>
+                        <Typography variant="display1" color="primary" className="tc ma0">
+                            Now
+                        </Typography>
                     </TimelineEntry>
                     <TimelineEntry icon={h1Logo}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">September 2017</p>
-                            <p className="ma0 f3">Virgin Hyperloop One</p>
-                            <span className="db f6 silver">
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                September 2017
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
+                                Virgin Hyperloop One
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Full Time Software Engineer</i>
-                            </span>
+                            </Typography>
                             <ul className="mt4">
-                                <li>Helped design and build a fully integrated simulation system</li>
-                                <li>Owned the web app for an internal cost optimization tool</li>
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Helped design and build a fully integrated simulation system
+                                    </Typography>
+                                </li>
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Owned the web app for an internal cost optimization tool
+                                    </Typography>
+                                </li>
                             </ul>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry icon={h1Logo} size={TimelineEntrySizes.SMALL}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">June 2017</p>
-                            <p className="ma0 f3">Virgin Hyperloop One</p>
-                            <span className="db f6 silver">
+                    <TimelineEntry icon={h1Logo} size={TimelineEntrySizes.KINDA_SMALL}>
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                June 2017
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
+                                Virgin Hyperloop One
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Software Intern</i>
-                            </span>
+                            </Typography>
                             <ul className="mt4">
-                                <li>Worked on the company help system</li>
-                                <li>Integrated the help system with Github</li>
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Worked on the company help system
+                                    </Typography>
+                                </li>
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Integrated the help system with Github
+                                    </Typography>
+                                </li>
                             </ul>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry icon={uscLogo} expandOnHover={false}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">May 2017</p>
-                            <p className="ma0 f3">
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                May 2017
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
                                 Graduation
                                 <i className="fas fa-graduation-cap ml2" />
-                            </p>
-                            <span className="db f6 silver">
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>M.S. Computer Science, General</i>
-                            </span>
+                            </Typography>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry size={TimelineEntrySizes.LARGE}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">October 2016</p>
-                            <p className="ma0 f3">Jibo project</p>
-                            <span className="db f6 silver">
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                October 2016
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
+                                Jibo project
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>With Professor David Barnhart</i>
-                            </span>
+                            </Typography>
                             <div className="mt4">
-                                <p>Engineering lead of a Jibo application.</p>
+                                <Typography variant="subheading" color="primary">
+                                    Engineering lead of a Jibo application.
+                                </Typography>
                                 <ul>
                                     <li>
-                                        Designed and built the project and its development/testing environment from
-                                        scratch
+                                        <Typography variant="subheading" color="primary">
+                                            Designed and built the project and its development/testing environment from
+                                            scratch
+                                        </Typography>
                                     </li>
-                                    <li>Managed a team of two developers and one researcher</li>
+                                    <li>
+                                        <Typography variant="subheading" color="primary">
+                                            Managed a team of two developers and one researcher
+                                        </Typography>
+                                    </li>
                                 </ul>
                             </div>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry icon={yahooLogo} size={TimelineEntrySizes.SMALL}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">May 2016</p>
-                            <p className="ma0 f3">Yahoo!</p>
-                            <span className="db f6 silver">
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                May 2016
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
+                                Yahoo!
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Technical Intern II</i>
-                            </span>
+                            </Typography>
                             <div className="mt4">
-                                <p>Owned the video player side of the Yahoo! Sports Reel project.</p>
+                                <Typography variant="subheading" color="primary">
+                                    Owned the video player side of the Yahoo! Sports Reel project.
+                                </Typography>
                             </div>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry icon={uscLogo} expandOnHover={false}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">May 2016</p>
-                            <p className="ma0 f3">
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                May 2016
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
                                 Graduation
                                 <i className="fas fa-graduation-cap ml2" />
-                            </p>
-                            <span className="db f6 silver">
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>B.S. Computer Science</i>
-                            </span>
-                            <span className="db f6 silver">
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Minor: Video Game Programming</i>
-                            </span>
+                            </Typography>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">January 2016</p>
-                            <p className="ma0 f3">BIRS</p>
-                            <span className="db f6 silver">
+                    <TimelineEntry size={TimelineEntrySizes.KINDA_SMALL}>
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                January 2016
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
+                                BIRS
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Brain Injury Research System</i>
-                            </span>
+                            </Typography>
                             <div className="mt4">
-                                <p>
+                                <Typography variant="subheading" color="primary">
                                     Assisted a PhD group with building an early warning application for identifying
                                     victims of concussion.
-                                </p>
+                                </Typography>
                             </div>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry icon={yahooLogo}>
-                        <Card extraclasses="h-100 overflow-hidden">
-                            <p className="mt0 mb1 f5 yellow">May 2015</p>
-                            <p className="ma0 f3">Yahoo!</p>
-                            <span className="db f6 silver">
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subheading" className={this.props.classes.secondaryLight}>
+                                May 2015
+                            </Typography>
+                            <Typography variant="headline" color="primary" className="ma0">
+                                Yahoo!
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Technical Intern I</i>
-                            </span>
-                            <div className="mt4">
-                                <ul>
-                                    <li>Improved data streaming to the video player</li>
-                                    <li>Revised the error code system</li>
-                                    <li>Unified metrics into one cohesive system</li>
-                                </ul>
-                            </div>
+                            </Typography>
+                            <ul className="mt4">
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Improved data streaming to the video player
+                                    </Typography>
+                                </li>
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Revised the error code system
+                                    </Typography>
+                                </li>
+                                <li>
+                                    <Typography variant="subheading" color="primary">
+                                        Unified metrics into one cohesive system
+                                    </Typography>
+                                </li>
+                            </ul>
                         </Card>
                     </TimelineEntry>
                 </Timeline>
@@ -146,4 +215,4 @@ class Career extends React.Component<CareerProps> {
     }
 }
 
-export default Career;
+export default withStyles(getMuiStyles)(Career);

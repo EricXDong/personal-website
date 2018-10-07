@@ -1,94 +1,56 @@
 import * as React from 'react';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 
 import { TransitionProps } from '../../const/transition';
+import getMuiStyles from '../../util/get-mui-styles';
+import videos, { Video } from '../../const/videos';
 import './videos.css';
+import '../../common.css';
+import '../../animations/fade-in.css';
+import '../../animations/fade-in-down.css';
+import '../../animations/blur-out.css';
 
-type VideosProps = TransitionProps;
-
-interface Video {
-    id: string;
-    src: string;
-    focus: boolean;
-}
+type VideosProps = TransitionProps & WithStyles<typeof getMuiStyles>;
 
 interface VideosState {
     videos: Video[];
 }
+
 class Videos extends React.Component<VideosProps, VideosState> {
+    private mainRef: React.RefObject<HTMLDivElement>;
     private videoRefs: Array<React.RefObject<HTMLIFrameElement>>;
+
+    private thumbnailWidth = 336;
+    private thumbnailHeight = 189;
 
     constructor(props: VideosProps) {
         super(props);
-        const videos = [
-            {
-                id: 'pledgeMission',
-                src: 'https://www.youtube.com/embed/958Hn9BMMeM?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'danceoff',
-                src: 'https://www.youtube.com/embed/AfTK8--KMvA?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'OTGFall2013',
-                src: 'https://www.youtube.com/embed/NELdGAqOkKE?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'OTGVegas',
-                src: 'https://www.youtube.com/embed/T9klu7LL-9I?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'KBD',
-                src: 'https://www.youtube.com/embed/3kpgTrivmbA?start=3180?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'BTRecognizeReal',
-                src: 'https://www.youtube.com/embed/YybhsefWqDI?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'BTSpring2016',
-                src: 'https://www.youtube.com/embed/MjsfBRQw9pk?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'APODanceComp',
-                src: 'https://www.youtube.com/embed/aru7UeyxhQ4?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'BTFall2016Promo',
-                src: 'https://www.youtube.com/embed/Bfl3zEOQb_Y?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'BTFall2016',
-                src: 'https://www.youtube.com/embed/mb5_sNUGqkg?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'BTFall2016Boyz',
-                src: 'https://www.youtube.com/embed/xSJFLuEsIlw?enablejsapi=1',
-                focus: false,
-            },
-            {
-                id: 'BTSpring2017Promo',
-                src:
-                    'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fuscbreakthrough%2Fvideos%2F10158561334815282%2F&show_text=0&width=560',
-                focus: false,
-            },
-            {
-                id: 'BTSpring2017',
-                src: 'https://www.youtube.com/embed/9szS_HLUrZM?enablejsapi=1',
-                focus: false,
-            },
-        ];
         this.videoRefs = videos.map(() => React.createRef<HTMLIFrameElement>());
+        this.mainRef = React.createRef<HTMLDivElement>();
         this.state = { videos };
+    }
+
+    public componentDidMount() {
+        //  Sets the loaded flag when the video has loaded
+        this.videoRefs.forEach((v, i) => {
+            if (v.current) {
+                v.current.onload = () =>
+                    this.setState({
+                        videos: this.state.videos
+                            .slice(0, i)
+                            .concat([
+                                Object.assign({}, this.state.videos[i], {
+                                    loaded: true,
+                                }),
+                            ])
+                            .concat(this.state.videos.slice(i + 1)),
+                    });
+            }
+        });
+        //  Re-render so the mainRef width is refreshed
+        this.setState({ videos });
     }
 
     //  Doesn't work on Facebook videos :(
@@ -130,6 +92,17 @@ class Videos extends React.Component<VideosProps, VideosState> {
         });
     };
 
+    public getDelayStyle = (idx: number) => {
+        let numVideosPerRow = 1;
+        if (this.mainRef.current) {
+            const divWidth = this.mainRef.current.clientWidth * 0.8; //  0.8 comes from the left/right padding
+            numVideosPerRow = Math.floor(divWidth / this.thumbnailWidth);
+        }
+        return {
+            animationDelay: `${Math.floor(idx / numVideosPerRow) / 2}s`,
+        };
+    };
+
     public render() {
         const sectionSpacing = {
             paddingLeft: '10vw',
@@ -138,47 +111,60 @@ class Videos extends React.Component<VideosProps, VideosState> {
         const videoWithFocus: boolean = this.state.videos.findIndex(v => v.focus) > -1;
         return (
             <div
-                className="relative flex flex-wrap justify-between overflow-scroll items-center z-1"
+                ref={this.mainRef}
+                className={`overflow-scroll ${this.props.exit ? 'blur-out' : ''}`}
                 style={sectionSpacing}
             >
-                {videoWithFocus && (
-                    <div
-                        className="absolute w-100 top-0 left-0 z-0"
-                        style={{ height: '120vh' }}
-                        onClick={this.resetVideoFocus}
-                    />
-                )}
-                {this.state.videos.map((video, i) => {
-                    //  Bigger if it has focus
-                    const videoSizing = {
-                        width: video.focus ? '45vw' : '15vw',
-                        height: video.focus ? '50vh' : '20vh',
-                    };
-                    return (
+                <div className="mb3 fade-in">
+                    <Typography variant="headline" className={`tr ${this.props.classes.primaryLight}`}>
+                        Various videos I've been in. Keeping them here for the memories.
+                    </Typography>
+                </div>
+                <div className="relative flex flex-wrap justify-between items-center z-1">
+                    {videoWithFocus && (
                         <div
-                            className="relative white ma3 bg-black-50 ba b--white-50 bw1 video-container"
-                            style={videoSizing}
-                        >
-                            {!video.focus && (
-                                <div
-                                    className="w-100 h-100 absolute top-0 left-0 pointer video-overlay"
-                                    onClick={this.focusVideoByIndex.bind(this, i)}
+                            className="absolute w-100 top-0 left-0 z-0"
+                            style={{ height: '120vh' }}
+                            onClick={this.resetVideoFocus}
+                        />
+                    )}
+                    {this.state.videos.map((video, i) => {
+                        //  Bigger if it has focus
+                        const videoSizing = {
+                            width: video.focus ? `${this.thumbnailWidth * 2.5}px` : `${this.thumbnailWidth}px`,
+                            height: video.focus ? `${this.thumbnailHeight * 2.5}px` : `${this.thumbnailHeight}px`,
+                        };
+                        return (
+                            <div
+                                className="relative white mv3 bg-black-50 ba b--white-50 bw1 video-container fade-in-down"
+                                style={Object.assign({}, videoSizing, this.getDelayStyle(i))}
+                            >
+                                {!video.loaded && (
+                                    <div className="absolute-center">
+                                        <CircularProgress size={80} className={this.props.classes.secondaryMain} />
+                                    </div>
+                                )}
+                                {!video.focus && (
+                                    <div
+                                        className="w-100 h-100 absolute top-0 left-0 pointer video-overlay"
+                                        onClick={this.focusVideoByIndex.bind(this, i)}
+                                    />
+                                )}
+                                <iframe
+                                    id={video.id}
+                                    ref={this.videoRefs[i]}
+                                    className="w-100 h-100"
+                                    src={video.src}
+                                    frameBorder="0"
+                                    allowFullScreen={true}
                                 />
-                            )}
-                            <iframe
-                                id={video.id}
-                                ref={this.videoRefs[i]}
-                                className="w-100 h-100"
-                                src={video.src}
-                                frameBorder="0"
-                                allowFullScreen={true}
-                            />
-                        </div>
-                    );
-                })}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         );
     }
 }
 
-export default Videos;
+export default withStyles(getMuiStyles)(Videos);
