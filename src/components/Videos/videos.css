@@ -1,0 +1,11 @@
+.video-overlay {
+    transition: background-color 0.25s ease;
+}
+
+.video-overlay:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.video-container {
+    transition: width 0.25s ease, height 0.25s ease;
+}

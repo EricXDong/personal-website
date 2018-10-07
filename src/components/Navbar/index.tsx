@@ -42,7 +42,7 @@ class Navbar extends React.Component<NavbarProps> {
 
     public render() {
         return (
-            <div className="fixed flex justify-between white w-100 pv5 ph">
+            <div className="fixed flex justify-between white w-100 z-1 navbar-spacing">
                 {Object.keys(NavigationPaths).map((path, i) => {
                     const style = {
                         animationDelay: `${i / 5}s`,

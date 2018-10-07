@@ -17,7 +17,7 @@ export default (props: TimelineBubbleProps) => {
         </div>
     ) : (
         <div className={`relative w3 h3`}>
-            <div className={`w2 h2 absolute ${defaultClasses} absolute-center`} />
+            <div className={`w2 h2 ${defaultClasses} absolute-center`} />
         </div>
     );
 };

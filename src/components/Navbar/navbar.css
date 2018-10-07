@@ -21,7 +21,8 @@
     animation-fill-mode: forwards;
 }
 
-.ph {
+.navbar-spacing {
+    padding-top: 8vh;
     padding-left: 15vw;
     padding-right: 15vw;
 }

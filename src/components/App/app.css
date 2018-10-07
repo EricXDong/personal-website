@@ -1,5 +1,6 @@
 .app {
     background-image: radial-gradient(gray, black 95%);
+    background-attachment: fixed;
 }
 
 ::-webkit-scrollbar {

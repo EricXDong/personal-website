@@ -64,10 +64,14 @@ class App extends React.Component<AppProps, AppState> {
     };
 
     public render() {
+        const sectionStyle = {
+            marginTop: '20vh',
+            height: 'calc(100% - 20vh)',
+        };
         return (
-            <div className="sans-serif absolute w-100 h-100 app">
+            <div className="sans-serif absolute w-100 h-100 overflow-hidden app">
                 <Navbar onNavigate={this.onNavigate} />
-                <div className="flex items-center w-100 h-100">
+                <div className="flex w-100 h-100" style={sectionStyle}>
                     {(() => {
                         switch (this.props.path) {
                             case NavigationPaths.HOME:

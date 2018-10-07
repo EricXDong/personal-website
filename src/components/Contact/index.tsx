@@ -147,7 +147,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
         const inputClasses = 'w-100 f4 pa3 db br2 bg-black-40 white ba b--white-60 no-focus';
         return (
             <div
-                className={`absolute flex items-center justify-between white w-70 h-50 absolute-center raleway-font ${
+                className={`flex items-center justify-between white w-70 h-50 absolute-center raleway-font ${
                     this.props.exit ? 'blur-out' : ''
                 }`}
             >
