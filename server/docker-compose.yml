@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+    server:
+        build:
+            context: .
+            # Tells docker to only build the development stage in dockerfile
+            target: development
+        ports:
+            - 5000:5000
+        volumes:
+            - "./:/go/src/github.com/personal-website-server"
+networks:
+  default:
+    external:
+        name: dongertown
