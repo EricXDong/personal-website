@@ -1,16 +1,21 @@
 version: '3.7'
 services:
+    client:
+        build:
+            context: ./client
+        ports:
+            - 80:80
     server:
         build:
-            context: .
-            # Tells docker to only build the server stage in dockerfile
-            target: server
+            context: ./server
+            # Tells docker to only build the development stage in dockerfile
+            target: development
         ports:
             - 5000:5000
         volumes:
-            - "./server/rest:/go/src/github.com/personal-website-server/rest"
-            - "./server/vendor:/go/src/github.com/personal-website-server/vendor"
-            - "./server/main.go:/go/src/github.com/personal-website-server/main.go"
+            - "./server:/go/src/github.com/personal-website-server/"
+            # - "./server/vendor:/go/src/github.com/personal-website-server/vendor"
+            # - "./server/main.go:/go/src/github.com/personal-website-server/main.go"
         container_name: server
 networks:
   default:

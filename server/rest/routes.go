@@ -6,8 +6,9 @@ import (
 
 func SetupRoutes() *mux.Router {
 	r := mux.NewRouter()
+	apiRouter := r.PathPrefix("/api/").Subrouter()
 
-	r.HandleFunc("/contact", receiveContact)
+	apiRouter.HandleFunc("/contact", receiveContact)
 
 	return r
 }
