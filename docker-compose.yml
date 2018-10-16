@@ -8,14 +8,11 @@ services:
     server:
         build:
             context: ./server
-            # Tells docker to only build the development stage in dockerfile
             target: development
         ports:
             - 5000:5000
         volumes:
             - "./server:/go/src/github.com/personal-website-server/"
-            # - "./server/vendor:/go/src/github.com/personal-website-server/vendor"
-            # - "./server/main.go:/go/src/github.com/personal-website-server/main.go"
         container_name: server
 networks:
   default:

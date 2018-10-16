@@ -6,11 +6,13 @@ RUN apk add git
 
 RUN mkdir -p /go/src/github.com/personal-website-server
 WORKDIR /go/src/github.com/personal-website-server
-ADD . .
 
 RUN go get -v github.com/pilu/fresh
 # `...` tells go to install all its dependencies too
 RUN go get -u github.com/golang/dep/...
+
+ADD . .
+
 RUN dep ensure
 
 # Set GOPATH so `go install` drops the executable in /go/bin

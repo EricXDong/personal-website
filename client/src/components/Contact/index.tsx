@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 
 import ContactLink from './ContactLink';
 import { TransitionProps } from '../../const/transition';
+import postContact from '../../http/post-contact';
 import fb from '../../img/fb.svg';
 import instagram from '../../img/instagram.svg';
 import linkedin from '../../img/linkedin.svg';
@@ -136,7 +137,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
 
     public submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        alert('SEND ME OFF FAM');
+        postContact(this.state.sender, this.state.message).then(response => console.log(response));
         this.setState({
             sender: '',
             message: '',
@@ -173,7 +174,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         value={this.state.message}
                     />
                     <div className="mt3 self-end">
-                        <Button variant="outlined" color="primary" size="large">
+                        <Button variant="outlined" type="submit" color="primary" size="large">
                             Send
                         </Button>
                     </div>

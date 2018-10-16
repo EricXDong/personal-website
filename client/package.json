@@ -4,6 +4,7 @@
     "private": true,
     "dependencies": {
         "@material-ui/core": "^3.1.2",
+        "isomorphic-fetch": "^2.2.1",
         "react": "^16.4.2",
         "react-dom": "^16.4.2",
         "react-redux": "^5.0.7",
@@ -20,6 +21,7 @@
         "eject": "react-scripts-ts eject"
     },
     "devDependencies": {
+        "@types/isomorphic-fetch": "^0.0.34",
         "@types/jest": "^23.3.1",
         "@types/node": "^10.9.2",
         "@types/react": "^16.4.12",

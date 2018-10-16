@@ -6,20 +6,20 @@ import { SetPathAction } from '../actions';
 export const SET_PATH = 'SET_PATH';
 
 export interface NavigationState {
-    path: NavigationPaths | null;
+  path: NavigationPaths | null;
 }
 
 const defaultState: NavigationState = {
-    path: null,
+  path: null,
 };
 
 const actionHandlers = {
-    [SET_PATH]: (state: NavigationState, action: SetPathAction) =>
-        Object.assign({}, state, {
-            path: action.path,
-        }),
+  [SET_PATH]: (state: NavigationState, action: SetPathAction) =>
+    Object.assign({}, state, {
+      path: action.path,
+    }),
 };
 
 export default (state: NavigationState = defaultState, action: AnyAction) => {
-    return actionHandlers[action.type] ? actionHandlers[action.type](state, action) : state;
+  return actionHandlers[action.type] ? actionHandlers[action.type](state, action) : state;
 };

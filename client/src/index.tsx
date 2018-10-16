@@ -4,10 +4,11 @@ import { Provider } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import 'tachyons';
 import 'typeface-roboto';
+import 'isomorphic-fetch';
 
 import App from './components/App';
 import store from './state/reducers';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import getTheme from './util/get-theme';
 
 const theme = getTheme();
@@ -21,4 +22,4 @@ ReactDOM.render(
     document.getElementById('root') as HTMLElement
 );
 
-registerServiceWorker();
+// registerServiceWorker();
