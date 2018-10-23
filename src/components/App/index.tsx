@@ -8,6 +8,7 @@ import Home from '../Home';
 import Career from '../Career';
 import Contact from '../Contact';
 import Videos from '../Videos';
+import Banners from '../Banners';
 import './app.css';
 
 interface AppPropsFromState {
@@ -71,6 +72,7 @@ class App extends React.Component<AppProps, AppState> {
         return (
             <div className="sans-serif absolute w-100 h-100 overflow-hidden app">
                 <Navbar onNavigate={this.onNavigate} />
+                <Banners />
                 <div className="flex w-100 h-100" style={sectionStyle}>
                     {(() => {
                         switch (this.props.path) {

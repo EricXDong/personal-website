@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import ContactLink from './ContactLink';
 import { TransitionProps } from '../../const/transition';
+import { addBanner, AddBannerAction } from '../../state/actions';
+import { BannerTypes } from '../../state/reducers/banners';
 import postContact from '../../http/post-contact';
 import fb from '../../img/fb.svg';
 import instagram from '../../img/instagram.svg';
@@ -15,7 +19,11 @@ import '../../animations/blur-in.css';
 import '../../animations/fade-in.css';
 import '../../animations/fade-in-right.css';
 
-type ContactProps = TransitionProps;
+interface ContactPropsFromDispatch {
+    addBanner: (bannerType: BannerTypes, message: string) => AddBannerAction;
+}
+
+type ContactProps = ContactPropsFromDispatch & TransitionProps;
 
 interface Link {
     component: React.ReactNode;
@@ -30,12 +38,16 @@ interface ContactState {
     message: string;
 }
 
-function getXYFromAngle(angleRadians: number, circleRadius: number): number[] {
+const getXYFromAngle = (angleRadians: number, circleRadius: number): number[] => {
     //  Solve for x,y coordinates using MATH Y'ALL
     const x = Math.round(circleRadius * Math.sin(angleRadians));
     const y = Math.round(circleRadius * Math.cos(angleRadians));
     return [x, y];
-}
+};
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    addBanner: (bannerType: BannerTypes, message: string) => dispatch(addBanner(bannerType, message)),
+});
 
 const centerStyle = {
     top: '50%',
@@ -104,7 +116,9 @@ class Contact extends React.Component<ContactProps, ContactState> {
                                 }
                             `;
                             styleElement.innerHTML = animation;
-                            document.head.appendChild(styleElement);
+                            if (document.head) {
+                                document.head.appendChild(styleElement);
+                            }
 
                             link.style = { animation: `${animationName} 300s linear infinite` };
                             return link;
@@ -137,7 +151,20 @@ class Contact extends React.Component<ContactProps, ContactState> {
 
     public submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        postContact(this.state.sender, this.state.message).then(response => console.log(response));
+        postContact(this.state.sender, this.state.message).then(response => {
+            if (response.status === 504) {
+                this.props.addBanner(
+                    BannerTypes.ERROR,
+                    "Oops! There was a problem sending your message. I've been notified and will address the " +
+                        'issue as soon as possible.'
+                );
+            } else {
+                this.props.addBanner(
+                    BannerTypes.INFO,
+                    'Thanks for the message! You should hear back from me within a day or two.'
+                );
+            }
+        });
         this.setState({
             sender: '',
             message: '',
@@ -196,4 +223,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
     }
 }
 
-export default Contact;
+export default connect(
+    null,
+    mapDispatchToProps
+)(Contact);
