@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import './timeline.css';
-import '../../animations/fade-in-right.css';
+import 'src/animations/fade-in-right.css';
 
 interface TimelineProps {
     extraclasses?: string;

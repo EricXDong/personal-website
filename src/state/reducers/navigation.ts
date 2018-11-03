@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 
-import { NavigationPaths } from '../../const/navigation';
+import { NavigationPaths } from 'src/const/navigation';
 import { SetPathAction } from '../actions';
 
 export const SET_PATH = 'SET_PATH';

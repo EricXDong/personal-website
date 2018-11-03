@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { RootState } from '../../state/reducers';
-import { setPath } from '../../state/actions';
-import { NavigationPaths, navigateTransitionTime, NavigationTypes } from '../../const/navigation';
-import { BasicButton } from '../../components/Buttons';
+import { RootState } from 'src/state/reducers';
+import { setPath } from 'src/state/actions';
+import { NavigationPaths, navigateTransitionTime, NavigationTypes } from 'src/const/navigation';
+import { BasicButton } from 'src/components/Buttons';
 import './navbar.css';
 
 interface NavbarPropsFromState {
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: Dispatch): NavbarPropsFromDispatch => ({
 
 class Navbar extends React.Component<NavbarProps> {
     public componentDidMount() {
-        this.setPath(NavigationPaths.HOME);
+        this.setPath(NavigationPaths.CONTACT);
     }
 
     public setPath = (path: NavigationTypes) => {

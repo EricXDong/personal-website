@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 
 import Navbar from '../Navbar';
-import { RootState } from '../../state/reducers';
-import { NavigationPaths, NavigationTypes, navigateTransitionTime } from '../../const/navigation';
+import { RootState } from 'src/state/reducers';
+import { NavigationPaths, NavigationTypes, navigateTransitionTime } from 'src/const/navigation';
 import Home from '../Home';
 import Career from '../Career';
 import Contact from '../Contact';

@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { Snackbar } from '@material-ui/core';
 
-import { Banner } from '../../state/reducers/banners';
+import { Banner } from 'src/state/reducers/banners';
 import { RootState } from 'src/state/reducers';
 import { connect } from 'react-redux';
+import BannerComponent from './BannerComponent';
 
 interface BannersPropsFromState {
     banners: Banner[];
 }
-
-// interface BannersPropsFromDispatch {}
 
 type BannersProps = BannersPropsFromState;
 
@@ -17,21 +15,11 @@ const mapStateToProps = (state: RootState) => ({
     banners: state.banners.banners,
 });
 
-// const mapDispatchToProps = (): BannersPropsFromDispatch => ({});
-
-const Banners: React.SFC<BannersProps> = ({ banners }) => {
+const Banners: React.SFC<BannersProps> = props => {
     return (
         <div>
-            {banners.map(banner => (
-                <Snackbar
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'left',
-                    }}
-                    open={true}
-                    message={banner.message}
-                    autoHideDuration={500}
-                />
+            {props.banners.map(banner => (
+                <BannerComponent banner={banner} />
             ))}
         </div>
     );

@@ -1,20 +1,25 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { withStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import * as scrollIntoView from 'scroll-into-view';
 
-import { TransitionProps } from '../../const/transition';
-import getMuiStyles from '../../util/get-mui-styles';
-import videos, { Video } from '../../const/videos';
+import { TransitionProps } from 'src/const/transition';
+import videos, { Video } from 'src/const/videos';
 import './videos.css';
-import '../../common.css';
-import '../../animations/fade-in.css';
-import '../../animations/fade-in-down.css';
-import '../../animations/blur-out.css';
+import 'src/common.css';
+import 'src/animations/fade-in.css';
+import 'src/animations/fade-in-down.css';
+import 'src/animations/blur-out.css';
 
-type VideosProps = TransitionProps & WithStyles<typeof getMuiStyles>;
+const styles = (theme: Theme) =>
+    createStyles({
+        primaryLight: { color: theme.palette.primary.light },
+        secondaryMain: { color: theme.palette.secondary.main },
+    });
+
+type VideosProps = TransitionProps & WithStyles<typeof styles>;
 
 interface VideosState {
     videos: Video[];
@@ -125,7 +130,7 @@ class Videos extends React.Component<VideosProps, VideosState> {
                 style={sectionSpacing}
             >
                 <div className="mb3 fade-in">
-                    <Typography variant="headline" className={`tr ${this.props.classes.primaryLight}`}>
+                    <Typography variant="h6" className={`tr ${this.props.classes.primaryLight}`}>
                         Various videos I've been in. Keeping them here for the memories.
                     </Typography>
                 </div>
@@ -176,4 +181,4 @@ class Videos extends React.Component<VideosProps, VideosState> {
     }
 }
 
-export default withStyles(getMuiStyles)(Videos);
+export default withStyles(styles)(Videos);

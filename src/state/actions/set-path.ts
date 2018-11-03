@@ -1,4 +1,4 @@
-import { NavigationTypes } from '../../const/navigation';
+import { NavigationTypes } from 'src/const/navigation';
 import { SET_PATH } from '../reducers/navigation';
 
 export interface SetPathAction {

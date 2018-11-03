@@ -1,29 +1,38 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
+import { TextField, Button, WithStyles, withStyles, Typography, createStyles, Theme } from '@material-ui/core';
 
 import ContactLink from './ContactLink';
-import { TransitionProps } from '../../const/transition';
-import { addBanner, AddBannerAction } from '../../state/actions';
-import { BannerTypes } from '../../state/reducers/banners';
-import postContact from '../../http/post-contact';
-import fb from '../../img/fb.svg';
-import instagram from '../../img/instagram.svg';
-import linkedin from '../../img/linkedin.svg';
-import github from '../../img/github.svg';
+import { TransitionProps } from 'src/const/transition';
+import { addBanner, AddBannerAction } from 'src/state/actions';
+import { BannerTypes } from 'src/state/reducers/banners';
+import postContact from 'src/http/post-contact';
+import fb from 'src/img/fb.svg';
+import instagram from 'src/img/instagram.svg';
+import linkedin from 'src/img/linkedin.svg';
+import github from 'src/img/github.svg';
 import './contact.css';
-import '../../common.css';
-import '../../animations/blur-out.css';
-import '../../animations/blur-in.css';
-import '../../animations/fade-in.css';
-import '../../animations/fade-in-right.css';
+import 'src/common.css';
+import 'src/animations/blur-out.css';
+import 'src/animations/blur-in.css';
+import 'src/animations/fade-in.css';
+import 'src/animations/fade-in-right.css';
 
 interface ContactPropsFromDispatch {
     addBanner: (bannerType: BannerTypes, message: string) => AddBannerAction;
 }
 
-type ContactProps = ContactPropsFromDispatch & TransitionProps;
+const styles = (theme: Theme) =>
+    createStyles({
+        primaryMain: { color: theme.palette.primary.main },
+        inputMargin: {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+    });
+
+type ContactProps = ContactPropsFromDispatch & TransitionProps & WithStyles<typeof styles>;
 
 interface Link {
     component: React.ReactNode;
@@ -139,12 +148,12 @@ class Contact extends React.Component<ContactProps, ContactState> {
         return link;
     };
 
-    public updateSender = (e: React.FormEvent<HTMLInputElement>) =>
+    public updateSender = (e: React.ChangeEvent<HTMLInputElement>) =>
         this.setState({
             sender: e.currentTarget.value,
         });
 
-    public updateMessage = (e: React.FormEvent<HTMLTextAreaElement>) =>
+    public updateMessage = (e: React.ChangeEvent<HTMLTextAreaElement>) =>
         this.setState({
             message: e.currentTarget.value,
         });
@@ -172,7 +181,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
     };
 
     public render() {
-        const inputClasses = 'w-100 f4 pa3 db br2 bg-black-40 white ba b--white-60 no-focus';
+        const { primaryMain, inputMargin } = this.props.classes;
         return (
             <div
                 className={`flex items-center justify-between white w-70 h-50 absolute-center raleway-font ${
@@ -183,20 +192,23 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     className="w-40 h-100 flex flex-column justify-center fade-in-right"
                     onSubmit={this.submitMessage}
                 >
-                    <p className="f2 mb3 self-start">Tell me anything</p>
-                    <input
-                        type="email"
-                        className={`mb3 border-box ${inputClasses}`}
+                    <Typography variant="h4" className={primaryMain}>
+                        Tell me anything
+                    </Typography>
+                    <TextField
+                        variant="outlined"
+                        label="Email address"
+                        className={inputMargin}
                         required={true}
-                        placeholder="Email address"
                         onChange={this.updateSender}
                         value={this.state.sender}
                     />
-                    <textarea
-                        className={`h-50 ${inputClasses}`}
-                        style={{ resize: 'none' }}
+                    <TextField
+                        variant="outlined"
+                        multiline={true}
+                        rows="8"
                         required={true}
-                        placeholder="Thoughts go here"
+                        label="Thoughts go here"
                         onChange={this.updateMessage}
                         value={this.state.message}
                     />
@@ -207,9 +219,11 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     </div>
                 </form>
                 <div className="w-40 h-100 relative flex justify-center items-center">
-                    <p style={{ animationDelay: '1.25s' }} className="f3 fade-in">
-                        Also check out
-                    </p>
+                    <div style={{ animationDelay: '1.25s' }} className="f3 fade-in">
+                        <Typography variant="h4" className={primaryMain}>
+                            Also check out
+                        </Typography>
+                    </div>
                     {this.state.links.map((link, i) => {
                         return (
                             <div className={`absolute ${link.classes}`} style={link.style}>
@@ -223,7 +237,9 @@ class Contact extends React.Component<ContactProps, ContactState> {
     }
 }
 
-export default connect(
-    null,
-    mapDispatchToProps
-)(Contact);
+export default withStyles(styles)(
+    connect(
+        null,
+        mapDispatchToProps
+    )(Contact)
+);

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import '../../../common.css';
+import 'src/common.css';
 
 interface TimelineBubbleProps {
     icon?: string;

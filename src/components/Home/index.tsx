@@ -1,16 +1,20 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { withStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 
-import { TransitionProps } from '../../const/transition';
-import getMuiStyles from '../../util/get-mui-styles';
-import '../../animations/blur-out.css';
-import '../../animations/fade-in.css';
-import '../../animations/fade-in-left.css';
-import '../../animations/fade-in-right.css';
+import { TransitionProps } from 'src/const/transition';
+import 'src/animations/blur-out.css';
+import 'src/animations/fade-in.css';
+import 'src/animations/fade-in-left.css';
+import 'src/animations/fade-in-right.css';
 import './home.css';
 
-type HomeProps = TransitionProps & WithStyles<typeof getMuiStyles>;
+const styles = (theme: Theme) =>
+    createStyles({
+        secondaryMain: { color: theme.palette.secondary.main },
+    });
+
+type HomeProps = TransitionProps & WithStyles<typeof styles>;
 
 const Home: React.SFC<HomeProps> = ({ exit, classes }) => (
     <div className={`absolute w-80 white home ${exit ? 'blur-out' : ''}`}>
@@ -26,4 +30,4 @@ const Home: React.SFC<HomeProps> = ({ exit, classes }) => (
     </div>
 );
 
-export default withStyles(getMuiStyles)(Home);
+export default withStyles(styles)(Home);
