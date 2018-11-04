@@ -2,6 +2,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import grey from '@material-ui/core/colors/grey';
 import amber from '@material-ui/core/colors/amber';
+import red from '@material-ui/core/colors/red';
 
 const palette = {
     primary: {
@@ -11,7 +12,11 @@ const palette = {
     secondary: {
         light: amber[200],
         main: amber[500],
+        dark: grey[700]
     },
+    error: {
+        main: red[800]
+    }
 };
 
 export default () =>

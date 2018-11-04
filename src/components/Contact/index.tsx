@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { TextField, Button, WithStyles, withStyles, Typography, createStyles, Theme } from '@material-ui/core';
+import { TextField, Button, WithStyles, withStyles, Typography, createStyles, Theme, LinearProgress } from '@material-ui/core';
 
 import ContactLink from './ContactLink';
 import { TransitionProps } from 'src/const/transition';
@@ -37,7 +37,6 @@ type ContactProps = ContactPropsFromDispatch & TransitionProps & WithStyles<type
 interface Link {
     component: React.ReactNode;
     style: any;
-    classes: string;
     offsetTransform?: string;
 }
 
@@ -45,6 +44,7 @@ interface ContactState {
     links: Link[];
     sender: string;
     message: string;
+    isSending: boolean;
 }
 
 const getXYFromAngle = (angleRadians: number, circleRadius: number): number[] => {
@@ -73,26 +73,23 @@ class Contact extends React.Component<ContactProps, ContactState> {
         this.state = {
             sender: '',
             message: '',
+            isSending: false,
             links: [
                 {
                     component: <ContactLink icon={instagram} url="https://www.instagram.com/thenameisdong/" />,
                     style: centerStyle,
-                    classes: 'blur-in',
                 },
                 {
                     component: <ContactLink icon={linkedin} url="https://www.linkedin.com/in/dongeric/" />,
                     style: centerStyle,
-                    classes: 'blur-in',
                 },
                 {
                     component: <ContactLink icon={github} url="https://github.com/EricXDong" />,
                     style: centerStyle,
-                    classes: 'blur-in',
                 },
                 {
                     component: <ContactLink icon={fb} url="https://www.facebook.com/EricDonger" />,
                     style: centerStyle,
-                    classes: 'blur-in',
                 },
             ],
         };
@@ -160,24 +157,31 @@ class Contact extends React.Component<ContactProps, ContactState> {
 
     public submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        postContact(this.state.sender, this.state.message).then(response => {
-            if (response.status === 504) {
-                this.props.addBanner(
-                    BannerTypes.ERROR,
-                    "Oops! There was a problem sending your message. I've been notified and will address the " +
-                        'issue as soon as possible.'
-                );
-            } else {
-                this.props.addBanner(
-                    BannerTypes.INFO,
-                    'Thanks for the message! You should hear back from me within a day or two.'
-                );
-            }
-        });
         this.setState({
-            sender: '',
-            message: '',
+            isSending: true
         });
+        postContact(this.state.sender, this.state.message)
+            .then(response => {
+                if (response.status >= 400) {
+                    this.props.addBanner(
+                        BannerTypes.ERROR,
+                        "Oops! There was a problem sending your message. I've been notified and will address the " +
+                            'issue as soon as possible.'
+                    );
+                } else {
+                    this.props.addBanner(
+                        BannerTypes.INFO,
+                        'Thanks for the message! You should hear back from me within a day or two.'
+                    );
+                }
+            })
+            .then(() =>
+                this.setState({
+                    sender: '',
+                    message: '',
+                    isSending: false
+                })
+            );
     };
 
     public render() {
@@ -200,8 +204,8 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         label="Email address"
                         className={inputMargin}
                         required={true}
-                        onChange={this.updateSender}
-                        value={this.state.sender}
+                    onChange={this.updateSender}
+                    value={this.state.sender}
                     />
                     <TextField
                         variant="outlined"
@@ -216,6 +220,9 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         <Button variant="outlined" type="submit" color="primary" size="large">
                             Send
                         </Button>
+                        <div className="mt1">
+                            {this.state.isSending && <LinearProgress />}
+                        </div>
                     </div>
                 </form>
                 <div className="w-40 h-100 relative flex justify-center items-center">
@@ -226,7 +233,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     </div>
                     {this.state.links.map((link, i) => {
                         return (
-                            <div className={`absolute ${link.classes}`} style={link.style}>
+                            <div className="absolute blur-in" style={link.style}>
                                 {link.component}
                             </div>
                         );
