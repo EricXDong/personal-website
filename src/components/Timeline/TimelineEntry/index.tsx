@@ -53,7 +53,7 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                 break;
             case TimelineEntrySizes.KINDA_SMALL:
                 expandWidth = '22rem';
-                expandHeight = '13rem';
+                expandHeight = '14rem';
                 break;
             case TimelineEntrySizes.MEDIUM:
                 expandWidth = '24rem';

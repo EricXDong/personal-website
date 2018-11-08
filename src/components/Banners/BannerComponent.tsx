@@ -13,17 +13,18 @@ interface BannerComponentPropsFromDispatch {
     removeBanner: (id: string) => {};
 }
 
-const styles = (theme: Theme) => createStyles({
-    info: {
-        backgroundColor: theme.palette.secondary.dark
-    },
-    warning: {
-        backgroundColor: theme.palette.secondary.main
-    },
-    error: {
-        backgroundColor: theme.palette.error.main
-    },
-});
+const styles = (theme: Theme) =>
+    createStyles({
+        info: {
+            backgroundColor: theme.palette.secondary.dark,
+        },
+        warning: {
+            backgroundColor: theme.palette.secondary.main,
+        },
+        error: {
+            backgroundColor: theme.palette.error.main,
+        },
+    });
 
 interface BannerComponentProps extends BannerComponentPropsFromDispatch, WithStyles<typeof styles> {
     banner: Banner;
@@ -94,7 +95,9 @@ class BannerComponent extends React.Component<BannerComponentProps, BannerCompon
     }
 }
 
-export default withStyles(styles)(connect(
-    null,
-    mapDispatchToProps
-)(BannerComponent));
+export default withStyles(styles)(
+    connect(
+        null,
+        mapDispatchToProps
+    )(BannerComponent)
+);

@@ -4,7 +4,7 @@ import grey from '@material-ui/core/colors/grey';
 import amber from '@material-ui/core/colors/amber';
 import red from '@material-ui/core/colors/red';
 
-const palette = {
+export const palette = {
     primary: {
         light: fade(grey[50], 0.5),
         main: fade(grey[50], 0.9),
@@ -12,11 +12,11 @@ const palette = {
     secondary: {
         light: amber[200],
         main: amber[500],
-        dark: grey[700]
+        dark: grey[700],
     },
     error: {
-        main: red[800]
-    }
+        main: red[800],
+    },
 };
 
 export default () =>
@@ -32,6 +32,9 @@ export default () =>
                         borderColor: palette.primary.main,
                     },
                 },
+                error: {
+                    borderColor: palette.error.main
+                },
                 notchedOutline: {
                     borderColor: palette.primary.main,
                 },
@@ -41,5 +44,10 @@ export default () =>
                     color: palette.primary.main,
                 },
             },
+            MuiInputBase: {
+                inputType: {
+                    height: 'auto'
+                }
+            }
         },
     });

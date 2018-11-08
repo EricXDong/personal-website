@@ -3,9 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 import { TransitionProps } from 'src/const/transition';
-import Card from '../Card';
-import Timeline from '../Timeline';
-import TimelineEntry, { TimelineEntrySizes } from '../Timeline/TimelineEntry';
+import Card from './Card';
+import Timeline from './Timeline';
+import TimelineEntry, { TimelineEntrySizes } from './Timeline/TimelineEntry';
 import h1Logo from 'src/img/h1.svg';
 import yahooLogo from 'src/img/yahoo.svg';
 import uscLogo from 'src/img/usc.svg';
@@ -27,11 +27,14 @@ class Career extends React.Component<CareerProps> {
             marginRight: '10vw',
             paddingBottom: '10vh',
         };
+        const hideTextMargin = {
+            marginTop: '1.4rem',
+        };
         return (
             <div className={`fw1 self-center ${this.props.exit ? 'blur-out w-100' : 'uncover-right'}`} style={spacing}>
                 <Timeline>
                     <TimelineEntry expandOnHover={false}>
-                        <Typography variant="display1" color="primary" className="tc ma0">
+                        <Typography variant="h4" color="primary" className="tc ma0">
                             Now
                         </Typography>
                     </TimelineEntry>
@@ -46,10 +49,10 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Full Time Software Engineer</i>
                             </Typography>
-                            <ul className="mt4">
+                            <ul style={hideTextMargin}>
                                 <li>
                                     <Typography variant="subtitle1" color="primary">
-                                        Helped design and build a fully integrated simulation system
+                                        Designed and built a fully integrated simulation system
                                     </Typography>
                                 </li>
                                 <li>
@@ -71,7 +74,7 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Software Intern</i>
                             </Typography>
-                            <ul className="mt4">
+                            <ul style={hideTextMargin}>
                                 <li>
                                     <Typography variant="subtitle1" color="primary">
                                         Worked on the company help system
@@ -110,15 +113,14 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>With Professor David Barnhart</i>
                             </Typography>
-                            <div className="mt4">
+                            <div style={hideTextMargin}>
                                 <Typography variant="subtitle1" color="primary">
                                     Engineering lead of a Jibo application.
                                 </Typography>
                                 <ul>
                                     <li>
                                         <Typography variant="subtitle1" color="primary">
-                                            Designed and built the project and its development/testing environment from
-                                            scratch
+                                            Designed and built the project from the ground up
                                         </Typography>
                                     </li>
                                     <li>
@@ -141,7 +143,7 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Technical Intern II</i>
                             </Typography>
-                            <div className="mt4">
+                            <div style={hideTextMargin}>
                                 <Typography variant="subtitle1" color="primary">
                                     Owned the video player side of the Yahoo! Sports Reel project.
                                 </Typography>
@@ -176,7 +178,7 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Brain Injury Research System</i>
                             </Typography>
-                            <div className="mt4">
+                            <div style={hideTextMargin}>
                                 <Typography variant="subtitle1" color="primary">
                                     Assisted a PhD group with building an early warning application for identifying
                                     victims of concussion.
@@ -195,7 +197,7 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Technical Intern I</i>
                             </Typography>
-                            <ul className="mt4">
+                            <ul style={hideTextMargin}>
                                 <li>
                                     <Typography variant="subtitle1" color="primary">
                                         Improved data streaming to the video player

@@ -1,7 +1,16 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { TextField, Button, WithStyles, withStyles, Typography, createStyles, Theme, LinearProgress } from '@material-ui/core';
+import {
+    TextField,
+    Button,
+    WithStyles,
+    withStyles,
+    Typography,
+    createStyles,
+    Theme,
+    LinearProgress,
+} from '@material-ui/core';
 
 import ContactLink from './ContactLink';
 import { TransitionProps } from 'src/const/transition';
@@ -158,7 +167,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
     public submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         this.setState({
-            isSending: true
+            isSending: true,
         });
         postContact(this.state.sender, this.state.message)
             .then(response => {
@@ -179,7 +188,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
                 this.setState({
                     sender: '',
                     message: '',
-                    isSending: false
+                    isSending: false,
                 })
             );
     };
@@ -201,11 +210,12 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     </Typography>
                     <TextField
                         variant="outlined"
+                        type="email"
                         label="Email address"
                         className={inputMargin}
                         required={true}
-                    onChange={this.updateSender}
-                    value={this.state.sender}
+                        onChange={this.updateSender}
+                        value={this.state.sender}
                     />
                     <TextField
                         variant="outlined"
@@ -220,9 +230,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         <Button variant="outlined" type="submit" color="primary" size="large">
                             Send
                         </Button>
-                        <div className="mt1">
-                            {this.state.isSending && <LinearProgress />}
-                        </div>
+                        <div className="mt1">{this.state.isSending && <LinearProgress />}</div>
                     </div>
                 </form>
                 <div className="w-40 h-100 relative flex justify-center items-center">

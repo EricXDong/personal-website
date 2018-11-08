@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
 import { withStyles, WithStyles, Theme, createStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import * as scrollIntoView from 'scroll-into-view';
 
+import AuthenticateVideosModal from './AuthenticateVideosModal';
+import { RootState } from 'src/state/reducers';
 import { TransitionProps } from 'src/const/transition';
 import videos, { Video } from 'src/const/videos';
 import './videos.css';
@@ -19,18 +22,26 @@ const styles = (theme: Theme) =>
         secondaryMain: { color: theme.palette.secondary.main },
     });
 
-type VideosProps = TransitionProps & WithStyles<typeof styles>;
+interface VideosPropsFromState {
+    isAuthenticated: boolean;
+}
+
+type VideosProps = VideosPropsFromState & TransitionProps & WithStyles<typeof styles>;
 
 interface VideosState {
     videos: Video[];
 }
 
+const mapStateToProps = (state: RootState) => ({
+    isAuthenticated: state.videos.isAuthenticated,
+});
+
 class Videos extends React.Component<VideosProps, VideosState> {
     private mainRef: React.RefObject<HTMLDivElement>;
     private videoRefs: Array<React.RefObject<HTMLIFrameElement>>;
 
-    private thumbnailWidth = 336;
-    private thumbnailHeight = 189;
+    private thumbnailWidth = 319;
+    private thumbnailHeight = 180;
 
     constructor(props: VideosProps) {
         super(props);
@@ -129,6 +140,7 @@ class Videos extends React.Component<VideosProps, VideosState> {
                 className={`overflow-scroll ${this.props.exit ? 'blur-out' : ''}`}
                 style={sectionSpacing}
             >
+                {!this.props.isAuthenticated && <AuthenticateVideosModal />}
                 <div className="mb3 fade-in">
                     <Typography variant="h6" className={`tr ${this.props.classes.primaryLight}`}>
                         Various videos I've been in. Keeping them here for the memories.
@@ -181,4 +193,4 @@ class Videos extends React.Component<VideosProps, VideosState> {
     }
 }
 
-export default withStyles(styles)(Videos);
+export default withStyles(styles)(connect(mapStateToProps)(Videos));
