@@ -11,7 +11,7 @@
 
 .fade-in-down {
     animation-name: fadeInDown;
-    animation-duration: 0.75s;
+    animation-duration: var(--transition-time);
     animation-timing-function: ease-in;
     animation-iteration-count: 1;
     animation-fill-mode: backwards;

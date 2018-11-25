@@ -9,6 +9,7 @@ import Career from '../Career';
 import Contact from '../Contact';
 import Videos from '../Videos';
 import Banners from '../Banners';
+import Projects from '../Projects';
 import './app.css';
 
 interface AppPropsFromState {
@@ -80,6 +81,8 @@ class App extends React.Component<AppProps, AppState> {
                                 return <Home exit={this.state.sectionsExiting[NavigationPaths.HOME]} />;
                             case NavigationPaths.CAREER:
                                 return <Career exit={this.state.sectionsExiting[NavigationPaths.CAREER]} />;
+                            case NavigationPaths.PROJECTS:
+                                return <Projects />;
                             case NavigationPaths.VIDEOS:
                                 return <Videos exit={this.state.sectionsExiting[NavigationPaths.VIDEOS]} />;
                             case NavigationPaths.CONTACT:

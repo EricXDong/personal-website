@@ -1,3 +1,8 @@
+:root {
+    --transition-time: 0.75s;
+    --fast-transition-time: 0.5s;
+}
+
 .absolute-center {
     position: absolute;
     top: 50%;

@@ -2,7 +2,16 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import {
-    Modal, TextField, WithStyles, createStyles, withStyles, Button, Zoom, Tooltip, MuiThemeProvider, createMuiTheme
+    Modal,
+    TextField,
+    WithStyles,
+    createStyles,
+    withStyles,
+    Button,
+    Zoom,
+    Tooltip,
+    MuiThemeProvider,
+    createMuiTheme,
 } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 
@@ -18,12 +27,13 @@ interface AuthenticateVideosModalPropsFromDispatch {
     navigateHome: () => {};
 }
 
-const styles = () => createStyles({
-    pwWidth: { width: '100%' },
-    mr: { marginRight: '0.5rem' },
-    ml: { marginLeft: '0.5rem' },
-    tooltip: { fontSize: '1rem' }
-});
+const styles = () =>
+    createStyles({
+        pwWidth: { width: '100%' },
+        mr: { marginRight: '0.5rem' },
+        ml: { marginLeft: '0.5rem' },
+        tooltip: { fontSize: '1rem' },
+    });
 
 type AuthenticateVideosModalProps = AuthenticateVideosModalPropsFromDispatch & WithStyles<typeof styles>;
 
@@ -48,23 +58,23 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
         };
     }
 
-    public onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => this.setState({
-        password: e.target.value,
-        isInvalidPassword: false
-    });
+    public onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
+        this.setState({
+            password: e.target.value,
+            isInvalidPassword: false,
+        });
 
     public onSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        postVideoAuth(this.state.password)
-            .then((response) => {
-                if (response.status === 200) {
-                    this.props.authenticateVideos(true);
-                } else {
-                    this.setState({
-                        isInvalidPassword: true
-                    });
-                }
-            });
+        postVideoAuth(this.state.password).then(response => {
+            if (response.status === 200) {
+                this.props.authenticateVideos(true);
+            } else {
+                this.setState({
+                    isInvalidPassword: true,
+                });
+            }
+        });
     };
 
     public render() {
@@ -74,22 +84,27 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
             overrides: {
                 MuiOutlinedInput: {
                     root: {
-                        color: palette.primary.main
-                    }
+                        color: palette.primary.main,
+                    },
                 },
                 MuiInputBase: {
                     inputType: {
-                        height: 'auto'
-                    }
-                }
-            }
+                        height: 'auto',
+                    },
+                },
+            },
         });
         return (
             <Modal open={this.state.isOpen} disableAutoFocus={true}>
                 <Card extraclasses="w-20 flex items-center absolute-center">
                     <form className="flex flex-column w-100" onSubmit={this.onSubmit}>
                         <MuiThemeProvider theme={this.state.isInvalidPassword ? errorTheme : getTheme()}>
-                            <Tooltip TransitionComponent={Zoom} title={tooltip} placement="right" classes={{ tooltip: this.props.classes.tooltip }}>
+                            <Tooltip
+                                TransitionComponent={Zoom}
+                                title={tooltip}
+                                placement="right"
+                                classes={{ tooltip: this.props.classes.tooltip }}
+                            >
                                 <TextField
                                     label="Enter Password"
                                     type="password"
@@ -117,7 +132,9 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
     }
 }
 
-export default withStyles(styles)(connect(
-    null,
-    mapDispatchToProps
-)(AuthenticateVideosModal));
+export default withStyles(styles)(
+    connect(
+        null,
+        mapDispatchToProps
+    )(AuthenticateVideosModal)
+);

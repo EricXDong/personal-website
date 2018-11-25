@@ -33,7 +33,7 @@ export default () =>
                     },
                 },
                 error: {
-                    borderColor: palette.error.main
+                    borderColor: palette.error.main,
                 },
                 notchedOutline: {
                     borderColor: palette.primary.main,
@@ -46,8 +46,8 @@ export default () =>
             },
             MuiInputBase: {
                 inputType: {
-                    height: 'auto'
-                }
-            }
+                    height: 'auto',
+                },
+            },
         },
     });

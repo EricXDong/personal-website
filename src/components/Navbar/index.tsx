@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch: Dispatch): NavbarPropsFromDispatch => ({
 
 class Navbar extends React.Component<NavbarProps> {
     public componentDidMount() {
-        this.setPath(NavigationPaths.CAREER);
+        this.setPath(NavigationPaths.PROJECTS);
     }
 
     public setPath = (path: NavigationTypes) => {
