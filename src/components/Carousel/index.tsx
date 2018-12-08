@@ -92,9 +92,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                     classes={{ root: navArrows }}
                     onClick={this.previousEntry}
                 />
-                <div className={`flex flex-column ${flexGrow}`}>
+                <div className={`flex flex-column items-center ${flexGrow}`}>
                     {this.state.inIdx !== undefined && this.state.outIdx !== undefined ? (
-                        <div className={`relative ${flexGrow}`}>
+                        <div className={`relative w-100 h-100 ${flexGrow}`}>
                             <div
                                 className={`w-100 absolute ${
                                     this.state.transitionLeft ? 'slide-in-left' : 'slide-in-right'
@@ -111,9 +111,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                             </div>
                         </div>
                     ) : (
-                        <div className={flexGrow}>{entries[this.state.currentIdx]}</div>
+                        <div className={`w-100 h-100 ${flexGrow}`}>{entries[this.state.currentIdx]}</div>
                     )}
-                    <div className={this.props.classes.bottomCenter}>
+                    <div>
                         {entries.map((_, i) => (
                             <span className={`${i === this.state.currentIdx ? 'fas': 'far'} fa-square white rotate mh3`} />
                         ))}
@@ -137,12 +137,6 @@ const styles = () =>
         },
         rotate180: {
             transform: 'rotate(180deg)',
-        },
-        bottomCenter: {
-            position: 'absolute',
-            bottom: '2rem',
-            left: '50%',
-            transform: 'translate(-50%)',
         },
         navArrows: {
             color: 'rgba(255, 255, 255, 0.5)',

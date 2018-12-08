@@ -9,9 +9,7 @@ class Projects extends React.Component {
         return (
             <Carousel>
                 <CarouselEntry>
-                    <Typography color="primary" variant="h1">
-                        Slide 1
-                    </Typography>
+                    <iframe src="assets/minesweeper/index.html" className="w-100 h-100 bn" />
                 </CarouselEntry>
                 <CarouselEntry>
                     <Typography color="primary" variant="h1">
