@@ -15,10 +15,6 @@
     transform: translate(-50%, -50%);
 }
 
-.rotate {
-    transform: rotate(45deg);
-}
-
 .huge-font {
     font-family: Raleway-Light, Arial, Helvetica, sans-serif;
     font-size: 7rem;

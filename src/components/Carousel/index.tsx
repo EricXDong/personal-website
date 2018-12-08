@@ -6,16 +6,7 @@ import 'src/animations/slide-out-right.css';
 import 'src/animations/slide-out-left.css';
 import 'src/animations/slide-in-right.css';
 import 'src/animations/slide-in-left.css';
-
-const styles = () =>
-    createStyles({
-        flexGrow: {
-            flexGrow: 1,
-        },
-        rotate180: {
-            transform: 'rotate(180deg)',
-        },
-    });
+import 'src/common.css';
 
 interface CarouselProps extends WithStyles<typeof styles> {
     children?: React.ReactChild[] | React.ReactChild;
@@ -90,14 +81,17 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     };
 
     public render() {
-        const { flexGrow, rotate180 } = this.props.classes;
+        const { flexGrow, rotate180, navArrows, h100 } = this.props.classes;
         const children = this.props.children;
-        const entries = Array.isArray(children) ? children : [children];
+        const entries = (Array.isArray(children) ? children : [children]) as React.ReactNodeArray;
         return (
             <div className="w-100 flex">
-                <div className="pointer bg-blue flex items-center justify-center" onClick={this.previousEntry}>
-                    <ArrowRight color="primary" fontSize="large" className={rotate180} />
-                </div>
+                <ArrowRight
+                    fontSize="large"
+                    className={`pointer ${rotate180} ${h100}`}
+                    classes={{ root: navArrows }}
+                    onClick={this.previousEntry}
+                />
                 <div className={`flex flex-column ${flexGrow}`}>
                     {this.state.inIdx !== undefined && this.state.outIdx !== undefined ? (
                         <div className={`relative ${flexGrow}`}>
@@ -119,16 +113,46 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                     ) : (
                         <div className={flexGrow}>{entries[this.state.currentIdx]}</div>
                     )}
-                    <div className="bg-yellow">
-                        <span>Thingies</span>
+                    <div className={this.props.classes.bottomCenter}>
+                        {entries.map((_, i) => (
+                            <span className={`${i === this.state.currentIdx ? 'fas': 'far'} fa-square white rotate mh3`} />
+                        ))}
                     </div>
                 </div>
-                <div className="pointer bg-blue flex items-center justify-center" onClick={this.nextEntry}>
-                    <ArrowRight color="primary" fontSize="large" />
-                </div>
+                <ArrowRight
+                    fontSize="large"
+                    className={`pointer ${h100}`}
+                    classes={{ root: navArrows }}
+                    onClick={this.nextEntry}
+                />
             </div>
         );
     }
 }
+
+const styles = () =>
+    createStyles({
+        flexGrow: {
+            flexGrow: 1,
+        },
+        rotate180: {
+            transform: 'rotate(180deg)',
+        },
+        bottomCenter: {
+            position: 'absolute',
+            bottom: '2rem',
+            left: '50%',
+            transform: 'translate(-50%)',
+        },
+        navArrows: {
+            color: 'rgba(255, 255, 255, 0.5)',
+            '&:hover': {
+                color: 'white',
+            }
+        },
+        h100: {
+            height: '100%',
+        }
+    });
 
 export default withStyles(styles)(Carousel);

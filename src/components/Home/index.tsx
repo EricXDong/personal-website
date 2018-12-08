@@ -7,6 +7,7 @@ import 'src/animations/blur-out.css';
 import 'src/animations/fade-in.css';
 import 'src/animations/fade-in-left.css';
 import 'src/animations/fade-in-right.css';
+import 'src/common.css';
 import './home.css';
 
 const styles = (theme: Theme) =>
