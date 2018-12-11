@@ -27,14 +27,6 @@ interface AuthenticateVideosModalPropsFromDispatch {
     navigateHome: () => {};
 }
 
-const styles = () =>
-    createStyles({
-        pwWidth: { width: '100%' },
-        mr: { marginRight: '0.5rem' },
-        ml: { marginLeft: '0.5rem' },
-        tooltip: { fontSize: '1rem' },
-    });
-
 type AuthenticateVideosModalProps = AuthenticateVideosModalPropsFromDispatch & WithStyles<typeof styles>;
 
 interface AuthenticateVideosModalState {
@@ -95,7 +87,7 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
             },
         });
         return (
-            <Modal open={this.state.isOpen} disableAutoFocus={true}>
+            <Modal open={this.state.isOpen} disableAutoFocus={true} BackdropProps={{ classes: { root: this.props.classes.backdrop}}}>
                 <Card extraclasses="w-20 flex items-center absolute-center">
                     <form className="flex flex-column w-100" onSubmit={this.onSubmit}>
                         <MuiThemeProvider theme={this.state.isInvalidPassword ? errorTheme : getTheme()}>
@@ -131,6 +123,17 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
         );
     }
 }
+
+const styles = () =>
+    createStyles({
+        pwWidth: { width: '100%' },
+        mr: { marginRight: '0.5rem' },
+        ml: { marginLeft: '0.5rem' },
+        tooltip: { fontSize: '1rem' },
+        backdrop: {
+            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+        }
+    });
 
 export default withStyles(styles)(
     connect(

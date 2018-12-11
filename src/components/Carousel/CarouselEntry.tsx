@@ -1,13 +1,9 @@
 import * as React from 'react';
 
 interface CarouselEntryProps {
-    children?: React.ReactChild[] | React.ReactChild;
+    children: React.ReactNode[] | React.ReactNode;
 }
 
-class CarouselEntry extends React.Component<CarouselEntryProps> {
-    public render() {
-        return this.props.children;
-    }
-}
+const CarouselEntry: React.SFC<CarouselEntryProps> = ({ children }) => <div>{children}</div>;
 
 export default CarouselEntry;

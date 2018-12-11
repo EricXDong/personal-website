@@ -9,8 +9,16 @@ import 'src/animations/slide-in-left.css';
 import 'src/common.css';
 
 interface CarouselProps extends WithStyles<typeof styles> {
+    onTransition?: (prevIdx: number, nextIdx: number) => void;
     children?: React.ReactChild[] | React.ReactChild;
 }
+
+interface CarouselDefaultProps {
+    onTransition: (prevIdx: number, nextIdx: number) => void;
+    children: React.ReactChild[] | React.ReactChild;
+}
+
+type CarouselPropsWithDefaults = CarouselProps & CarouselDefaultProps;
 
 interface CarouselState {
     currentIdx: number;
@@ -20,6 +28,11 @@ interface CarouselState {
 }
 
 class Carousel extends React.Component<CarouselProps, CarouselState> {
+    public static defaultProps: CarouselDefaultProps = {
+        onTransition: () => ({}),
+        children: [],
+    };
+    
     public transitionTime = 500; //  In ms
 
     constructor(props: CarouselProps) {
@@ -45,6 +58,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     };
 
     public nextEntry = () => {
+        const { onTransition } = this.props as CarouselPropsWithDefaults;
         const nextIdx = this.clampIdx(this.state.currentIdx + 1);
         this.setState({
             currentIdx: nextIdx,
@@ -52,6 +66,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
             outIdx: this.state.currentIdx,
             transitionLeft: true,
         });
+        onTransition(this.state.currentIdx, nextIdx);
         setTimeout(
             () =>
                 this.setState({
@@ -63,6 +78,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     };
 
     public previousEntry = () => {
+        const { onTransition } = this.props as CarouselPropsWithDefaults;
         const nextIdx = this.clampIdx(this.state.currentIdx - 1);
         this.setState({
             currentIdx: nextIdx,
@@ -70,6 +86,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
             outIdx: this.state.currentIdx,
             transitionLeft: false,
         });
+        onTransition(this.state.currentIdx, nextIdx);
         setTimeout(
             () =>
                 this.setState({
@@ -113,9 +130,11 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                     ) : (
                         <div className={`w-100 h-100 ${flexGrow}`}>{entries[this.state.currentIdx]}</div>
                     )}
-                    <div>
+                    <div className="mb3">
                         {entries.map((_, i) => (
-                            <span className={`${i === this.state.currentIdx ? 'fas': 'far'} fa-square white rotate mh3`} />
+                            <span
+                                className={`${i === this.state.currentIdx ? 'fas' : 'far'} fa-square white rotate mh3`}
+                            />
                         ))}
                     </div>
                 </div>
@@ -142,11 +161,11 @@ const styles = () =>
             color: 'rgba(255, 255, 255, 0.5)',
             '&:hover': {
                 color: 'white',
-            }
+            },
         },
         h100: {
             height: '100%',
-        }
+        },
     });
 
 export default withStyles(styles)(Carousel);
