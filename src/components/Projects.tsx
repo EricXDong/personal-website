@@ -1,18 +1,23 @@
 import * as React from 'react';
 import { Typography } from '@material-ui/core';
 
+import { TransitionProps } from 'src/const/transition';
 import Carousel from './Carousel';
 import CarouselEntry from './Carousel/CarouselEntry';
 import 'src/common.css';
+import 'src/animations/fade-in-down.css';
+import 'src/animations/blur-out.css';
 
 interface ProjectsState {
     minesweeperURL: string;
 }
 
-class Projects extends React.Component<{}, ProjectsState> {
-    public minesweeperIdx = 0;
-    
-    constructor(props: {}) {
+type ProjectsProps = TransitionProps;
+
+class Projects extends React.Component<ProjectsProps, ProjectsState> {
+    public minesweeperIdx = 1;
+
+    constructor(props: ProjectsProps) {
         super(props);
         this.state = { minesweeperURL: 'assets/minesweeper/index.html' };
     }
@@ -20,21 +25,40 @@ class Projects extends React.Component<{}, ProjectsState> {
     //  Makes transitions smoother since the game causes app to lag a little
     public onCarouselTransition = (prevIdx: number, nextIdx: number) => {
         if (prevIdx === this.minesweeperIdx) {
-            this.setState({ minesweeperURL: '' })
+            this.setState({ minesweeperURL: '' });
         } else if (nextIdx === this.minesweeperIdx) {
             setTimeout(() => {
-                this.setState({ minesweeperURL: 'assets/minesweeper/index.html' })
+                this.setState({ minesweeperURL: 'assets/minesweeper/index.html' });
             }, 500);
         }
-    }
-    
+    };
+
     public render() {
         return (
-            <Carousel onTransition={this.onCarouselTransition}>
+            <Carousel
+                onTransition={this.onCarouselTransition}
+                className={this.props.exit ? 'blur-out' : 'fade-in-down'}
+            >
                 <CarouselEntry>
                     <div className="flex justify-center">
-                        <div className="flex flex-column items-end">
-                            <Typography variant="h6" color="primary">Game I made for fun! Give it a second to load.</Typography>
+                        <div className="flex flex-column">
+                            <Typography variant="h6" color="primary">Virtual Reality Garage Band</Typography>
+                            <Typography variant="body1" color="primary">
+                                Created for Hack Music LA, this game allows you to adjust the volume of the various instruments in a track
+                                as well as left/right pan.
+                            </Typography>
+                            <video width="924" height="510" controls={true}>
+                                <source src="assets/vr-garage-band.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                    </div>
+                </CarouselEntry>
+                <CarouselEntry>
+                    <div className="flex justify-center">
+                        <div className="flex flex-column">
+                            <Typography variant="h6" color="primary">
+                                Remake of Minesweeper for fun. Give it a second to load.
+                            </Typography>
                             <iframe
                                 src={this.state.minesweeperURL}
                                 width="960"
@@ -43,16 +67,6 @@ class Projects extends React.Component<{}, ProjectsState> {
                             />
                         </div>
                     </div>
-                </CarouselEntry>
-                <CarouselEntry>
-                    <Typography color="primary" variant="h1">
-                        Slide 2
-                    </Typography>
-                </CarouselEntry>
-                <CarouselEntry>
-                    <Typography color="primary" variant="h1">
-                        Slide 3
-                    </Typography>
                 </CarouselEntry>
             </Carousel>
         );

@@ -82,7 +82,7 @@ class App extends React.Component<AppProps, AppState> {
                             case NavigationPaths.CAREER:
                                 return <Career exit={this.state.sectionsExiting[NavigationPaths.CAREER]} />;
                             case NavigationPaths.PROJECTS:
-                                return <Projects />;
+                                return <Projects exit={this.state.sectionsExiting[NavigationPaths.PROJECTS]} />;
                             case NavigationPaths.VIDEOS:
                                 return <Videos exit={this.state.sectionsExiting[NavigationPaths.VIDEOS]} />;
                             case NavigationPaths.CONTACT:

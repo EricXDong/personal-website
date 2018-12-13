@@ -11,11 +11,13 @@ import 'src/common.css';
 interface CarouselProps extends WithStyles<typeof styles> {
     onTransition?: (prevIdx: number, nextIdx: number) => void;
     children?: React.ReactChild[] | React.ReactChild;
+    className?: string;
 }
 
 interface CarouselDefaultProps {
     onTransition: (prevIdx: number, nextIdx: number) => void;
     children: React.ReactChild[] | React.ReactChild;
+    className: string;
 }
 
 type CarouselPropsWithDefaults = CarouselProps & CarouselDefaultProps;
@@ -31,8 +33,9 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     public static defaultProps: CarouselDefaultProps = {
         onTransition: () => ({}),
         children: [],
+        className: '',
     };
-    
+
     public transitionTime = 500; //  In ms
 
     constructor(props: CarouselProps) {
@@ -102,7 +105,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
         const children = this.props.children;
         const entries = (Array.isArray(children) ? children : [children]) as React.ReactNodeArray;
         return (
-            <div className="w-100 flex">
+            <div className={`w-100 flex ${this.props.className}`}>
                 <ArrowRight
                     fontSize="large"
                     className={`pointer ${rotate180} ${h100}`}

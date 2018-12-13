@@ -87,32 +87,36 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
             },
         });
         return (
-            <Modal open={this.state.isOpen} disableAutoFocus={true} BackdropProps={{ classes: { root: this.props.classes.backdrop}}}>
+            <Modal
+                open={this.state.isOpen}
+                disableAutoFocus={true}
+                BackdropProps={{ classes: { root: this.props.classes.backdrop } }}
+            >
                 <Card extraclasses="w-20 flex items-center absolute-center">
                     <form className="flex flex-column w-100" onSubmit={this.onSubmit}>
                         <MuiThemeProvider theme={this.state.isInvalidPassword ? errorTheme : getTheme()}>
+                            <TextField
+                                label="Enter Password"
+                                type="password"
+                                variant="outlined"
+                                className={this.props.classes.pwWidth}
+                                value={this.state.password}
+                                onChange={this.onChangePassword}
+                                error={this.state.isInvalidPassword}
+                            />
+                        </MuiThemeProvider>
+                        <div className="flex justify-between mt3">
                             <Tooltip
                                 TransitionComponent={Zoom}
                                 title={tooltip}
-                                placement="right"
+                                placement="bottom"
                                 classes={{ tooltip: this.props.classes.tooltip }}
                             >
-                                <TextField
-                                    label="Enter Password"
-                                    type="password"
-                                    variant="outlined"
-                                    className={this.props.classes.pwWidth}
-                                    value={this.state.password}
-                                    onChange={this.onChangePassword}
-                                    error={this.state.isInvalidPassword}
-                                />
+                                <Button variant="outlined" color="primary" size="large" onClick={this.props.navigateHome}>
+                                    <HomeIcon classes={{ root: this.props.classes.mr }} />
+                                    Go home
+                                </Button>
                             </Tooltip>
-                        </MuiThemeProvider>
-                        <div className="flex justify-between mt3">
-                            <Button variant="outlined" color="primary" size="large" onClick={this.props.navigateHome}>
-                                <HomeIcon classes={{ root: this.props.classes.mr }} />
-                                Go home
-                            </Button>
                             <Button variant="outlined" type="submit" color="primary" size="large">
                                 Submit
                             </Button>
@@ -132,7 +136,7 @@ const styles = () =>
         tooltip: { fontSize: '1rem' },
         backdrop: {
             backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        }
+        },
     });
 
 export default withStyles(styles)(

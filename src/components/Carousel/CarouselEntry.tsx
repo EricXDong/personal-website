@@ -4,6 +4,6 @@ interface CarouselEntryProps {
     children: React.ReactNode[] | React.ReactNode;
 }
 
-const CarouselEntry: React.SFC<CarouselEntryProps> = ({ children }) => <div>{children}</div>;
+const CarouselEntry: React.SFC<CarouselEntryProps> = ({ children }) => <>{children}</>;
 
 export default CarouselEntry;
