@@ -92,7 +92,7 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
                 disableAutoFocus={true}
                 BackdropProps={{ classes: { root: this.props.classes.backdrop } }}
             >
-                <Card extraclasses="w-20 flex items-center absolute-center">
+                <Card extraclasses={`w-20 flex items-center absolute-center ${this.props.classes.minWidth}`}>
                     <form className="flex flex-column w-100" onSubmit={this.onSubmit}>
                         <MuiThemeProvider theme={this.state.isInvalidPassword ? errorTheme : getTheme()}>
                             <TextField
@@ -112,7 +112,12 @@ class AuthenticateVideosModal extends React.Component<AuthenticateVideosModalPro
                                 placement="bottom"
                                 classes={{ tooltip: this.props.classes.tooltip }}
                             >
-                                <Button variant="outlined" color="primary" size="large" onClick={this.props.navigateHome}>
+                                <Button
+                                    variant="outlined"
+                                    color="primary"
+                                    size="large"
+                                    onClick={this.props.navigateHome}
+                                >
                                     <HomeIcon classes={{ root: this.props.classes.mr }} />
                                     Go home
                                 </Button>
@@ -137,6 +142,9 @@ const styles = () =>
         backdrop: {
             backgroundColor: 'rgba(0, 0, 0, 0.75)',
         },
+        minWidth: {
+            minWidth: '16rem',
+        }
     });
 
 export default withStyles(styles)(

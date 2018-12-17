@@ -10,7 +10,7 @@
 
 .home {
     font-family: Raleway, Arial, Helvetica, sans-serif;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -24,6 +24,12 @@
     font-family: Raleway-Light, Arial, Helvetica, sans-serif;
 }
 
-.maroon {
-    color: #8B1717;
+.skill-logo {
+    opacity: 0.3;
+    transition: transform 0.25s, opacity 0.25s;
+}
+
+.skill-logo:hover {
+    transform: translateY(-0.75rem);
+    opacity: 1;
 }

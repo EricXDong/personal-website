@@ -42,10 +42,12 @@ class Projects extends React.Component<ProjectsProps, ProjectsState> {
                 <CarouselEntry>
                     <div className="flex justify-center">
                         <div className="flex flex-column">
-                            <Typography variant="h6" color="primary">Virtual Reality Garage Band</Typography>
+                            <Typography variant="h6" color="primary">
+                                Virtual Reality Garage Band
+                            </Typography>
                             <Typography variant="body1" color="primary">
-                                Created for Hack Music LA, this game allows you to adjust the volume of the various instruments in a track
-                                as well as left/right pan.
+                                Created for Hack Music LA, this game allows you to adjust the volume of the various
+                                instruments in a track as well as left/right pan.
                             </Typography>
                             <video width="924" height="510" controls={true}>
                                 <source src="assets/vr-garage-band.mp4" type="video/mp4" />
@@ -57,7 +59,7 @@ class Projects extends React.Component<ProjectsProps, ProjectsState> {
                     <div className="flex justify-center">
                         <div className="flex flex-column">
                             <Typography variant="h6" color="primary">
-                                Remake of Minesweeper for fun. Give it a second to load.
+                                Remake of the classic game Minesweeper. Give it a second to load.
                             </Typography>
                             <iframe
                                 src={this.state.minesweeperURL}
@@ -66,6 +68,13 @@ class Projects extends React.Component<ProjectsProps, ProjectsState> {
                                 className={`bn ${this.state.minesweeperURL === '' ? 'bg-black-50' : ''}`}
                             />
                         </div>
+                    </div>
+                </CarouselEntry>
+                <CarouselEntry>
+                    <div className="flex justify-center pt7">
+                        <Typography variant="h2" color="primary">
+                            More to come!
+                        </Typography>
                     </div>
                 </CarouselEntry>
             </Carousel>

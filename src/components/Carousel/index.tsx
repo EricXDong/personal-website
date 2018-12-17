@@ -63,13 +63,13 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     public nextEntry = () => {
         const { onTransition } = this.props as CarouselPropsWithDefaults;
         const nextIdx = this.clampIdx(this.state.currentIdx + 1);
+        onTransition(this.state.currentIdx, nextIdx);
         this.setState({
             currentIdx: nextIdx,
             inIdx: nextIdx,
             outIdx: this.state.currentIdx,
             transitionLeft: true,
         });
-        onTransition(this.state.currentIdx, nextIdx);
         setTimeout(
             () =>
                 this.setState({
@@ -83,13 +83,13 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
     public previousEntry = () => {
         const { onTransition } = this.props as CarouselPropsWithDefaults;
         const nextIdx = this.clampIdx(this.state.currentIdx - 1);
+        onTransition(this.state.currentIdx, nextIdx);
         this.setState({
             currentIdx: nextIdx,
             inIdx: nextIdx,
             outIdx: this.state.currentIdx,
             transitionLeft: false,
         });
-        onTransition(this.state.currentIdx, nextIdx);
         setTimeout(
             () =>
                 this.setState({
@@ -108,7 +108,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
             <div className={`w-100 flex ${this.props.className}`}>
                 <ArrowRight
                     fontSize="large"
-                    className={`pointer ${rotate180} ${h100}`}
+                    className={`pointer ph3 ${rotate180} ${h100}`}
                     classes={{ root: navArrows }}
                     onClick={this.previousEntry}
                 />
@@ -143,7 +143,7 @@ class Carousel extends React.Component<CarouselProps, CarouselState> {
                 </div>
                 <ArrowRight
                     fontSize="large"
-                    className={`pointer ${h100}`}
+                    className={`pointer ph3 ${h100}`}
                     classes={{ root: navArrows }}
                     onClick={this.nextEntry}
                 />
