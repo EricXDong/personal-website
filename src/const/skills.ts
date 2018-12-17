@@ -40,8 +40,9 @@ export default [
     },
     {
         src: nginxLogo,
-        url: 'https://www.nginx.com/',   
-    }, {
+        url: 'https://www.nginx.com/',
+    },
+    {
         src: awsLogo,
         url: 'https://aws.amazon.com/',
     },
