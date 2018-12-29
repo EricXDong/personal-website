@@ -144,7 +144,7 @@ const styles = () =>
         },
         minWidth: {
             minWidth: '16rem',
-        }
+        },
     });
 
 export default withStyles(styles)(
