@@ -21,6 +21,8 @@ type AppProps = AppPropsFromState;
 interface AppState {
     //  A map telling which section is transitioning out
     sectionsExiting: Map<NavigationPaths, boolean>;
+    windowWidth: number;
+    windowHeight: number;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -36,6 +38,8 @@ class App extends React.Component<AppProps, AppState> {
         });
         this.state = {
             sectionsExiting,
+            windowWidth: window.innerWidth,
+            windowHeight: window.innerHeight,
         };
     }
 

@@ -1,9 +1,0 @@
-{
-"TOTAL_MEMORY": 268435456,
-"dataUrl": "minesweeper.data.unityweb",
-"asmCodeUrl": "minesweeper.asm.code.unityweb",
-"asmMemoryUrl": "minesweeper.asm.memory.unityweb",
-"asmFrameworkUrl": "minesweeper.asm.framework.unityweb",
-"splashScreenStyle": "Dark",
-"backgroundColor": "#231F20"
-}
