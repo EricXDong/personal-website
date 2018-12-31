@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 
-import Navbar from '../Navbar';
+import Navbar from 'src/components/Navbar';
 import { RootState } from 'src/state/reducers';
 import { NavigationPaths, NavigationTypes, navigateTransitionTime } from 'src/const/navigation';
-import Home from '../Home';
-import Career from '../Career';
-import Contact from '../Contact';
-import Videos from '../Videos';
-import Banners from '../Banners';
-import Projects from '../Projects';
+import Home from 'src/components/Home';
+import Career from 'src/components/Career';
+import Contact from 'src/components/Contact';
+import Videos from 'src/components/Videos';
+import Banners from 'src/components/Banners';
+import Projects from 'src/components/Projects';
 import './app.css';
 
 interface AppPropsFromState {
@@ -21,8 +21,6 @@ type AppProps = AppPropsFromState;
 interface AppState {
     //  A map telling which section is transitioning out
     sectionsExiting: Map<NavigationPaths, boolean>;
-    windowWidth: number;
-    windowHeight: number;
 }
 
 const mapStateToProps = (state: RootState) => ({
@@ -38,8 +36,6 @@ class App extends React.Component<AppProps, AppState> {
         });
         this.state = {
             sectionsExiting,
-            windowWidth: window.innerWidth,
-            windowHeight: window.innerHeight,
         };
     }
 

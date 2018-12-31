@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "Raleway";
+    src: url("../../fonts/Raleway-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Raleway-Light";
+    src: url("../../fonts//Raleway-ExtraLight.ttf");
+}
+
 .app {
     background-image: radial-gradient(gray, black 95%);
     background-attachment: fixed;

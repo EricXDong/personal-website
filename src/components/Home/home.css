@@ -1,13 +1,3 @@
-@font-face {
-    font-family: "Raleway";
-    src: url("../../fonts/Raleway-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Raleway-Light";
-    src: url("../../fonts//Raleway-ExtraLight.ttf");
-}
-
 .home {
     font-family: Raleway, Arial, Helvetica, sans-serif;
     top: 45%;
@@ -15,13 +5,11 @@
     transform: translate(-50%, -50%);
 }
 
-.huge-font {
-    font-family: Raleway-Light, Arial, Helvetica, sans-serif;
-    font-size: 7rem;
-}
-
-.thin-font {
-    font-family: Raleway-Light, Arial, Helvetica, sans-serif;
+.home-sm {
+    font-family: Raleway, Arial, Helvetica, sans-serif;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .skill-logo {
