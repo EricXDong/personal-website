@@ -10,12 +10,14 @@ import {
     createStyles,
     Theme,
     LinearProgress,
+    withWidth,
 } from '@material-ui/core';
 
 import ContactLink from './ContactLink';
 import { TransitionProps } from 'src/const/transition';
 import { addBanner, AddBannerAction } from 'src/state/actions';
 import { BannerTypes } from 'src/state/reducers/banners';
+import ScreenSize from 'src/const/screen-size';
 import postContact from 'src/http/post-contact';
 import fb from 'src/img/fb.svg';
 import instagram from 'src/img/instagram.svg';
@@ -32,16 +34,9 @@ interface ContactPropsFromDispatch {
     addBanner: (bannerType: BannerTypes, message: string) => AddBannerAction;
 }
 
-const styles = (theme: Theme) =>
-    createStyles({
-        primaryMain: { color: theme.palette.primary.main },
-        inputMargin: {
-            marginTop: '1rem',
-            marginBottom: '1rem',
-        },
-    });
-
-type ContactProps = ContactPropsFromDispatch & TransitionProps & WithStyles<typeof styles>;
+interface ContactProps extends ContactPropsFromDispatch, TransitionProps, WithStyles<typeof styles> {
+    width: string;
+}
 
 interface Link {
     component: React.ReactNode;
@@ -166,9 +161,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
 
     public submitMessage = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        this.setState({
-            isSending: true,
-        });
+        this.setState({ isSending: true });
         postContact(this.state.sender, this.state.message)
             .then(response => {
                 if (response.status >= 400) {
@@ -195,14 +188,16 @@ class Contact extends React.Component<ContactProps, ContactState> {
 
     public render() {
         const { primaryMain, inputMargin } = this.props.classes;
+        const width = this.props.width;
+        const isBigScreen = width === ScreenSize.MD || width === ScreenSize.LG || width === ScreenSize.XL;
         return (
             <div
-                className={`flex items-center justify-between white w-70 h-50 absolute-center raleway-font ${
+                className={`flex items-center justify-between white w-70 absolute-center raleway-font ${
                     this.props.exit ? 'blur-out' : ''
                 }`}
             >
                 <form
-                    className="w-40 h-100 flex flex-column justify-center fade-in-right"
+                    className={`h-100 flex flex-column justify-center fade-in-right ${isBigScreen ? 'w-40' : 'w-100'}`}
                     onSubmit={this.submitMessage}
                 >
                     <Typography variant="h4" className={primaryMain}>
@@ -233,28 +228,41 @@ class Contact extends React.Component<ContactProps, ContactState> {
                         <div className="mt1">{this.state.isSending && <LinearProgress />}</div>
                     </div>
                 </form>
-                <div className="w-40 h-100 relative flex justify-center items-center">
-                    <div style={{ animationDelay: '1.25s' }} className="f3 fade-in">
-                        <Typography variant="h4" className={primaryMain}>
-                            Also check out
-                        </Typography>
+                {isBigScreen && (
+                    <div className="w-40 h-100 relative flex justify-center items-center">
+                        <div style={{ animationDelay: '1.25s' }} className="f3 fade-in">
+                            <Typography variant="h4" className={primaryMain}>
+                                Also check out
+                            </Typography>
+                        </div>
+                        {this.state.links.map((link, i) => {
+                            return (
+                                <div className="absolute blur-in" style={link.style}>
+                                    {link.component}
+                                </div>
+                            );
+                        })}
                     </div>
-                    {this.state.links.map((link, i) => {
-                        return (
-                            <div className="absolute blur-in" style={link.style}>
-                                {link.component}
-                            </div>
-                        );
-                    })}
-                </div>
+                )}
             </div>
         );
     }
 }
 
-export default withStyles(styles)(
-    connect(
-        null,
-        mapDispatchToProps
-    )(Contact)
+const styles = (theme: Theme) =>
+    createStyles({
+        primaryMain: { color: theme.palette.primary.main },
+        inputMargin: {
+            marginTop: '1rem',
+            marginBottom: '1rem',
+        },
+    });
+
+export default withWidth()(
+    withStyles(styles)(
+        connect(
+            null,
+            mapDispatchToProps
+        )(Contact)
+    )
 );
