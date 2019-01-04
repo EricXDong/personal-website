@@ -23,6 +23,7 @@ import fb from 'src/img/fb.svg';
 import instagram from 'src/img/instagram.svg';
 import linkedin from 'src/img/linkedin.svg';
 import github from 'src/img/github.svg';
+import freelancer from 'src/img/freelancer.png';
 import './contact.css';
 import 'src/common.css';
 import 'src/animations/blur-out.css';
@@ -93,6 +94,10 @@ class Contact extends React.Component<ContactProps, ContactState> {
                 },
                 {
                     component: <ContactLink icon={fb} url="https://www.facebook.com/EricDonger" />,
+                    style: centerStyle,
+                },
+                {
+                    component: <ContactLink icon={freelancer} url="https://www.freelancer.com/u/ericdong02" />,
                     style: centerStyle,
                 },
             ],
