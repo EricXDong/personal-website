@@ -1,9 +1,14 @@
+import { RequestType } from '.';
+
 export default (email: string, message: string) =>
-    fetch('/api/contact', {
+    fetch('/api', {
         method: 'POST',
         body: JSON.stringify({
-            email,
-            message,
+            type: RequestType.CONTACT,
+            data: {
+                email,
+                message
+            }
         }),
         headers: {
             'Content-Type': 'application/json',

@@ -1,7 +1,14 @@
+import { RequestType } from '.';
+
 export default (password: string) =>
-    fetch('/api/videos', {
+    fetch('/api', {
         method: 'POST',
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({
+            type: RequestType.VIDEOS,
+            data: {
+                password
+            }
+        }),
         headers: {
             'Content-Type': 'application/json',
         },
