@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { KeyboardArrowDown as KeyboardArrowDownIcon } from '@material-ui/icons';
 
 import TimelineBubble from '../TimelineBubble';
 import './timeline-entry.css';
@@ -83,12 +84,17 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                 {this.props.entryAboveIcon ? (
                     <>
                         <div
-                            className="mb3 flex items-end justify-center entry-children"
+                            className="relative mb3 flex items-end justify-center entry-children"
                             style={this.state.didHover ? expandTopStyle : {}}
                             onMouseEnter={this.onHover}
                             onMouseLeave={this.onHoverExit}
                         >
                             {this.props.children}
+                            {this.props.expandOnHover && !this.state.didHover && (
+                                <div className="absolute bottom-0 right-0 mr2">
+                                    <KeyboardArrowDownIcon className="white-60" />
+                                </div>
+                            )}
                         </div>
                         <TimelineBubble icon={this.props.icon} />
                     </>
@@ -96,12 +102,17 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                     <>
                         <TimelineBubble icon={this.props.icon} />
                         <div
-                            className="mt3 flex items-end justify-center entry-children"
+                            className="relative mt3 flex items-end justify-center entry-children"
                             style={this.state.didHover ? expandBtmStyle : {}}
                             onMouseEnter={this.onHover}
                             onMouseLeave={this.onHoverExit}
                         >
                             {this.props.children}
+                            {this.props.expandOnHover && !this.state.didHover && (
+                                <div className="absolute bottom-0 right-0 mr2">
+                                    <KeyboardArrowDownIcon className="white-60" />
+                                </div>
+                            )}
                         </div>
                     </>
                 )}

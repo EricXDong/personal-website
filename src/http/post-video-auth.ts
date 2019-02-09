@@ -6,8 +6,8 @@ export default (password: string) =>
         body: JSON.stringify({
             type: RequestType.VIDEOS,
             data: {
-                password
-            }
+                password,
+            },
         }),
         headers: {
             'Content-Type': 'application/json',

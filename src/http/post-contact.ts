@@ -7,8 +7,8 @@ export default (email: string, message: string) =>
             type: RequestType.CONTACT,
             data: {
                 email,
-                message
-            }
+                message,
+            },
         }),
         headers: {
             'Content-Type': 'application/json',
