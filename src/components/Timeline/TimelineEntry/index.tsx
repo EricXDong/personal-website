@@ -90,11 +90,12 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                             onMouseLeave={this.onHoverExit}
                         >
                             {this.props.children}
-                            {this.props.expandOnHover && !this.state.didHover && (
-                                <div className="absolute bottom-0 right-0 mr2">
-                                    <KeyboardArrowDownIcon className="white-60" />
-                                </div>
-                            )}
+                            {this.props.expandOnHover &&
+                                !this.state.didHover && (
+                                    <div className="absolute bottom-0 right-0 mr2">
+                                        <KeyboardArrowDownIcon className="white-60" />
+                                    </div>
+                                )}
                         </div>
                         <TimelineBubble icon={this.props.icon} />
                     </>
@@ -108,11 +109,12 @@ class TimelineEntry extends React.Component<TimelineEntryProps, TimelineEntrySta
                             onMouseLeave={this.onHoverExit}
                         >
                             {this.props.children}
-                            {this.props.expandOnHover && !this.state.didHover && (
-                                <div className="absolute bottom-0 right-0 mr2">
-                                    <KeyboardArrowDownIcon className="white-60" />
-                                </div>
-                            )}
+                            {this.props.expandOnHover &&
+                                !this.state.didHover && (
+                                    <div className="absolute bottom-0 right-0 mr2">
+                                        <KeyboardArrowDownIcon className="white-60" />
+                                    </div>
+                                )}
                         </div>
                     </>
                 )}

@@ -140,7 +140,7 @@ const styles = () =>
         ml: { marginLeft: '0.5rem' },
         tooltip: { fontSize: '1rem' },
         backdrop: {
-            backgroundColor: 'rgba(0, 0, 0, 0.75)',
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
         },
         minWidth: {
             minWidth: '16rem',

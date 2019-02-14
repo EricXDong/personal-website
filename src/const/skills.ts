@@ -35,16 +35,16 @@ export default [
         url: 'https://www.docker.com/',
     },
     {
+        src: awsLogo,
+        url: 'https://aws.amazon.com/',
+    },
+    {
         src: golangLogo,
         url: 'https://golang.org/',
     },
     {
         src: nginxLogo,
         url: 'https://www.nginx.com/',
-    },
-    {
-        src: awsLogo,
-        url: 'https://aws.amazon.com/',
     },
     {
         src: pythonLogo,
