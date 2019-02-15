@@ -20,10 +20,10 @@ import { BannerTypes } from 'src/state/reducers/banners';
 import ScreenSize from 'src/const/screen-size';
 import postContact from 'src/http/post-contact';
 import fb from 'src/img/fb.svg';
-import instagram from 'src/img/instagram.svg';
 import linkedin from 'src/img/linkedin.svg';
 import github from 'src/img/github.svg';
 import freelancer from 'src/img/freelancer.png';
+import pph from 'src/img/pph.png';
 import './contact.css';
 import 'src/common.css';
 import 'src/animations/blur-out.css';
@@ -81,15 +81,15 @@ class Contact extends React.Component<ContactProps, ContactState> {
             isSending: false,
             links: [
                 {
-                    component: <ContactLink icon={instagram} url="https://www.instagram.com/thenameisdong/" />,
-                    style: centerStyle,
-                },
-                {
                     component: <ContactLink icon={linkedin} url="https://www.linkedin.com/in/dongeric/" />,
                     style: centerStyle,
                 },
                 {
                     component: <ContactLink icon={github} url="https://github.com/EricXDong" />,
+                    style: centerStyle,
+                },
+                {
+                    component: <ContactLink icon={pph} url="https://www.peopleperhour.com/freelancer/eric/web-developer/2595128" />,
                     style: centerStyle,
                 },
                 {
