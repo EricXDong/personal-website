@@ -89,7 +89,12 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     style: centerStyle,
                 },
                 {
-                    component: <ContactLink icon={pph} url="https://www.peopleperhour.com/freelancer/eric/web-developer/2595128" />,
+                    component: (
+                        <ContactLink
+                            icon={pph}
+                            url="https://www.peopleperhour.com/freelancer/eric/web-developer/2595128"
+                        />
+                    ),
                     style: centerStyle,
                 },
                 {

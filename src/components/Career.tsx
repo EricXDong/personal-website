@@ -9,6 +9,7 @@ import TimelineEntry, { TimelineEntrySizes } from './Timeline/TimelineEntry';
 import h1Logo from 'src/img/h1.svg';
 import yahooLogo from 'src/img/yahoo.svg';
 import uscLogo from 'src/img/usc.svg';
+import googleLogo from 'src/img/google.svg';
 import 'src/animations/blur-out.css';
 import 'src/animations/uncover-right.css';
 
@@ -33,36 +34,6 @@ class Career extends React.Component<CareerProps> {
         return (
             <div className={`fw1 self-center ${this.props.exit ? 'blur-out w-100' : 'uncover-right'}`} style={spacing}>
                 <Timeline>
-                    <TimelineEntry icon={yahooLogo}>
-                        <Card extraclasses="h-100 w-100 overflow-hidden">
-                            <Typography variant="subtitle1" className={this.props.classes.secondaryLight}>
-                                May 2015
-                            </Typography>
-                            <Typography variant="h6" color="primary" className="ma0">
-                                Yahoo!
-                            </Typography>
-                            <Typography variant="body1" className={this.props.classes.primaryLight}>
-                                <i>Technical Intern I</i>
-                            </Typography>
-                            <ul style={hideTextMargin}>
-                                <li>
-                                    <Typography variant="subtitle1" color="primary">
-                                        Improved data streaming to the video player
-                                    </Typography>
-                                </li>
-                                <li>
-                                    <Typography variant="subtitle1" color="primary">
-                                        Revised the error code system
-                                    </Typography>
-                                </li>
-                                <li>
-                                    <Typography variant="subtitle1" color="primary">
-                                        Unified metrics into one cohesive system
-                                    </Typography>
-                                </li>
-                            </ul>
-                        </Card>
-                    </TimelineEntry>
                     <TimelineEntry size={TimelineEntrySizes.KINDA_SMALL}>
                         <Card extraclasses="h-100 w-100 overflow-hidden">
                             <Typography variant="subtitle1" className={this.props.classes.secondaryLight}>
@@ -195,7 +166,7 @@ class Career extends React.Component<CareerProps> {
                                 Virgin Hyperloop One
                             </Typography>
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
-                                <i>Full Time Software Engineer</i>
+                                <i>Software Engineer</i>
                             </Typography>
                             <ul style={hideTextMargin}>
                                 <li>
@@ -209,6 +180,19 @@ class Career extends React.Component<CareerProps> {
                                     </Typography>
                                 </li>
                             </ul>
+                        </Card>
+                    </TimelineEntry>
+                    <TimelineEntry icon={googleLogo} expandOnHover={false}>
+                        <Card extraclasses="h-100 w-100 overflow-hidden">
+                            <Typography variant="subtitle1" className={this.props.classes.secondaryLight}>
+                                March 2019
+                            </Typography>
+                            <Typography variant="h6" color="primary" className="ma0">
+                                Google
+                            </Typography>
+                            <Typography variant="body1" className={this.props.classes.primaryLight}>
+                                <i>Software Engineer</i>
+                            </Typography>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry expandOnHover={false}>

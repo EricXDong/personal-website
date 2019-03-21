@@ -10,8 +10,7 @@ import {
     Button,
     withStyles,
     WithStyles,
-    createStyles,
-    Typography,
+    createStyles
 } from '@material-ui/core';
 import BurgerIcon from '@material-ui/icons/Dehaze';
 
@@ -20,6 +19,7 @@ import { RootState } from 'src/state/reducers';
 import { setPath } from 'src/state/actions';
 import { NavigationPaths, navigateTransitionTime, NavigationTypes, disableOnSmallScreen } from 'src/const/navigation';
 import { BasicButton } from 'src/components/Buttons';
+import NavItemWithTooltip from './NavItemWithTooltip';
 import './navbar.css';
 
 interface NavbarPropsFromState {
@@ -71,6 +71,28 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
         }
     };
 
+    //  Render normally or disabled and with a tooltip
+    public renderNavItem = (path: NavigationPaths, isDisabled: boolean) => {
+        const item = (
+            <ListItem
+                button={true}
+                onClick={this.setPath(NavigationPaths[path])}
+                disabled={isDisabled}
+            >
+                <ListItemText primary={NavigationPaths[path]} />
+            </ListItem>
+        );
+        if (isDisabled) {
+            return (
+                <NavItemWithTooltip message="View on a larger screen for the full experience">
+                    {item}
+                </NavItemWithTooltip>
+            )
+        } else {
+            return item;
+        }
+    }
+
     public render() {
         //  For small screens
         if (this.props.width === ScreenSize.XS || this.props.width === ScreenSize.SM) {
@@ -86,19 +108,13 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                         classes={{ paper: this.props.classes.drawer }}
                     >
                         <List>
-                            {Object.keys(NavigationPaths).map(path => (
-                                <ListItem
-                                    button={true}
-                                    onClick={this.setPath(NavigationPaths[path])}
-                                    disabled={disableOnSmallScreen.indexOf(NavigationPaths[path]) > -1}
-                                >
-                                    <ListItemText primary={NavigationPaths[path]} />
-                                </ListItem>
-                            ))}
+                            {Object.keys(NavigationPaths)
+                                .map(path => this.renderNavItem(
+                                    path as NavigationPaths,
+                                    disableOnSmallScreen.indexOf(NavigationPaths[path]) > -1
+                                ))
+                            }
                         </List>
-                        <div className="mt4 ph3">
-                            <Typography variant="body1">View on a larger screen for the full experience.</Typography>
-                        </div>
                     </SwipeableDrawer>
                 </div>
             );
