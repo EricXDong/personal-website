@@ -18,14 +18,14 @@ const NavItemWithTooltip: React.SFC<NavItemWithTooltipProps> = ({ message, child
                 open={isOpen}
                 title={message}
                 classes={{
-                    popper: "ml5"
+                    popper: 'ml5',
                 }}
                 placement="right"
             >
                 <div onClick={toggleTooltip(true)}>{children}</div>
             </Tooltip>
         </ClickAwayListener>
-    )
+    );
 };
 
 export default NavItemWithTooltip;

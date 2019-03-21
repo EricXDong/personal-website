@@ -10,7 +10,7 @@ import {
     Button,
     withStyles,
     WithStyles,
-    createStyles
+    createStyles,
 } from '@material-ui/core';
 import BurgerIcon from '@material-ui/icons/Dehaze';
 
@@ -74,24 +74,20 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
     //  Render normally or disabled and with a tooltip
     public renderNavItem = (path: NavigationPaths, isDisabled: boolean) => {
         const item = (
-            <ListItem
-                button={true}
-                onClick={this.setPath(NavigationPaths[path])}
-                disabled={isDisabled}
-            >
+            <ListItem button={true} onClick={this.setPath(NavigationPaths[path])} disabled={isDisabled}>
                 <ListItemText primary={NavigationPaths[path]} />
             </ListItem>
         );
         if (isDisabled) {
             return (
-                <NavItemWithTooltip message="View on a larger screen for the full experience">
+                <NavItemWithTooltip message="View on a larger screen for the full experience.">
                     {item}
                 </NavItemWithTooltip>
-            )
+            );
         } else {
             return item;
         }
-    }
+    };
 
     public render() {
         //  For small screens
@@ -108,12 +104,12 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
                         classes={{ paper: this.props.classes.drawer }}
                     >
                         <List>
-                            {Object.keys(NavigationPaths)
-                                .map(path => this.renderNavItem(
+                            {Object.keys(NavigationPaths).map(path =>
+                                this.renderNavItem(
                                     path as NavigationPaths,
                                     disableOnSmallScreen.indexOf(NavigationPaths[path]) > -1
-                                ))
-                            }
+                                )
+                            )}
                         </List>
                     </SwipeableDrawer>
                 </div>
