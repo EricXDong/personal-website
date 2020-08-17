@@ -138,7 +138,7 @@ class Career extends React.Component<CareerProps> {
                                 June 2017
                             </Typography>
                             <Typography variant="h6" color="primary" className="ma0">
-                                Virgin Hyperloop One
+                                Virgin Hyperloop
                             </Typography>
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Software Intern</i>
@@ -163,7 +163,7 @@ class Career extends React.Component<CareerProps> {
                                 September 2017
                             </Typography>
                             <Typography variant="h6" color="primary" className="ma0">
-                                Virgin Hyperloop One
+                                Virgin Hyperloop
                             </Typography>
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Software Engineer</i>
@@ -182,7 +182,7 @@ class Career extends React.Component<CareerProps> {
                             </ul>
                         </Card>
                     </TimelineEntry>
-                    <TimelineEntry icon={googleLogo} expandOnHover={false}>
+                    <TimelineEntry icon={googleLogo}>
                         <Card extraclasses="h-100 w-100 overflow-hidden">
                             <Typography variant="subtitle1" className={this.props.classes.secondaryLight}>
                                 March 2019
@@ -193,6 +193,18 @@ class Career extends React.Component<CareerProps> {
                             <Typography variant="body1" className={this.props.classes.primaryLight}>
                                 <i>Software Engineer</i>
                             </Typography>
+                            <ul style={hideTextMargin}>
+                                <li>
+                                    <Typography variant="subtitle1" color="primary">
+                                        Owner of the team's performance metrics collection and analysis
+                                    </Typography>
+                                </li>
+                                <li>
+                                    <Typography variant="subtitle1" color="primary">
+                                        Lead design and implementation of multiple major new features
+                                    </Typography>
+                                </li>
+                            </ul>
                         </Card>
                     </TimelineEntry>
                     <TimelineEntry expandOnHover={false}>
