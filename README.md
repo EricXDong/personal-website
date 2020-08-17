@@ -17,3 +17,9 @@
 1. Run dev: `docker-compose up`
 2. Run prod: `docker-compose -f docker-compose.prod.yml`
 3. Navigate to `http://localhost:3000/`
+
+### How to deploy
+
+1. Navigate to AWS console
+2. Update files in S3
+3. Update CloudFront
