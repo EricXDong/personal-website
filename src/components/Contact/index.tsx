@@ -22,8 +22,7 @@ import postContact from 'src/http/post-contact';
 import fb from 'src/img/fb.svg';
 import linkedin from 'src/img/linkedin.svg';
 import github from 'src/img/github.svg';
-import freelancer from 'src/img/freelancer.png';
-import pph from 'src/img/pph.png';
+import artstation from 'src/img/artstation.svg';
 import './contact.css';
 import 'src/common.css';
 import 'src/animations/blur-out.css';
@@ -89,20 +88,11 @@ class Contact extends React.Component<ContactProps, ContactState> {
                     style: centerStyle,
                 },
                 {
-                    component: (
-                        <ContactLink
-                            icon={pph}
-                            url="https://www.peopleperhour.com/freelancer/eric/web-developer/2595128"
-                        />
-                    ),
-                    style: centerStyle,
-                },
-                {
                     component: <ContactLink icon={fb} url="https://www.facebook.com/EricDonger" />,
                     style: centerStyle,
                 },
                 {
-                    component: <ContactLink icon={freelancer} url="https://www.freelancer.com/u/ericdong02" />,
+                    component: <ContactLink icon={artstation} url="https://www.artstation.com/teaclub" />,
                     style: centerStyle,
                 },
             ],
