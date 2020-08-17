@@ -1,0 +1,20 @@
+.apps img {
+    max-height: 250px;
+}
+
+.lightenium {
+    padding-right: 3rem;
+    margin-right: 3rem;
+    border-right: 3px solid rgba(255, 255, 255, 0.75);
+}
+
+.lightenium-container {
+    margin-left: auto;
+    align-self: flex-end;
+}
+
+.restaurant-search {
+    padding-left: 3rem;
+    margin-left: 3rem;
+    border-left: 3px solid rgba(255, 255, 255, 0.75);
+}
